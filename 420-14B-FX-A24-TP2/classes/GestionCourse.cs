@@ -49,7 +49,7 @@ namespace _420_14B_FX_A24_TP2.classes
             return false;
         }
         /// <summary>
-        /// Ajoute une course dans la liste de course
+        /// Méthode permettanr d'ajouter une course dans la liste de course
         /// </summary>
         /// <param name="course">Course à vérifier si existante sinon ajouter dans la liste</param>
         /// <exception cref="ArgumentNullException">Excecption retournant une exception si nulle</exception>
@@ -65,7 +65,39 @@ namespace _420_14B_FX_A24_TP2.classes
 
             Courses.Add(course);
         }
-       
+        /// <summary>
+        /// Méthode permettant charger les courses dans une liste
+        /// </summary>
+        /// <param name="cheminFichierCourses">Chemin CSV permettant d'acceder au informations des courses</param>
+        /// <param name="cheminFichierCoureurs">Chemin CSV permettant d'acceder au informations des coureurs</param>
+        private void ChargerCourse(string cheminFichierCourses, string cheminFichierCoureurs)
+        {
+            string[] vectLignesCourses = Utilitaire.ChargerDonnees(cheminFichierCourses);
+            string[] champs;
+            Courses = new List<Course>();
+            Course course;
+            try
+            {
+
+
+                for (int i = 1; i < vectLignesCourses.Length; i++)
+                {
+                    champs = vectLignesCourses[i].Split(';');
+                    course = new Course(Guid.Parse(champs[0]), champs[1], DateOnly.FromDateTime(DateTime.Parse(champs[4].ToString())), champs[2], (enums.Province)Convert.ToUInt16(champs[3]), (enums.TypeCourse)Convert.ToUInt16(champs[5]), (ushort)Convert.ToInt16(champs[6]));
+
+                    ChargerCoureurs(course, cheminFichierCoureurs);
+
+                    Courses.Add(course);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
+
+
+        }
+
     }
 }
 
