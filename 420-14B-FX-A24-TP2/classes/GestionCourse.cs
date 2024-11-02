@@ -97,7 +97,29 @@ namespace _420_14B_FX_A24_TP2.classes
 
 
         }
+        /// <summary>
+        /// Méthode permettant charger les coureurs dans une liste
+        /// </summary>
+        /// <param name="course">La course dans les coureurs seront ajoutés</param>
+        /// <param name="cheminFichierCoureurs">Chemin CSV permettant d'acceder au informations des coureurs</param>
+        private void ChargerCoureurs(Course course, string cheminFichierCoureurs)
+        {
+            string[] vectLignesCoureurs = Utilitaire.ChargerDonnees(cheminFichierCoureurs);
+            string[] champs;
+            course.Coureurs = new List<Coureur>();
 
+            for (int i = 1; i < vectLignesCoureurs.Length; i++)
+            {
+                if (vectLignesCoureurs[i] is not null)
+                {
+                    champs = vectLignesCoureurs[i].Split(';');
+                    if (course.Id == Guid.Parse(champs[0]))
+                    {
+                        course.Coureurs.Add(new Coureur((ushort)Convert.ToInt16(champs[1]), champs[2], champs[3], (enums.Categorie)Convert.ToUInt16(champs[6]), champs[4], (enums.Province)Convert.ToUInt16(champs[5]), TimeSpan.Parse(champs[7]), Boolean.Parse(champs[8])));
+                    }
+                }
+            }
+        }
     }
 }
 

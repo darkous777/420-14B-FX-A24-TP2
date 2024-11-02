@@ -14,7 +14,7 @@
         <TabControl Margin="10">
             <TabItem Header="Information sur la course" HorizontalAlignment="Right" Margin="0,-2,-2,0" Width="148">
                 <StackPanel>
-                    <GroupBox>
+                    <StackPanel>
                         <StackPanel Orientation="Vertical"  Margin="10">
                             <StackPanel Orientation="Horizontal" Margin="0,10">
                                 <Label Width="80">Nom</Label>
@@ -57,13 +57,8 @@
                                 <TextBox x:Name="txtDistance" Width="90"></TextBox>
                             </StackPanel>
                         </StackPanel>
-                    </GroupBox>
-                    <StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
-                        <Button x:Name="btnAjoutCourse"  Content="Ajouter"  Width="120" Height="25" Margin="10,0,0,0" Click="btnAjout_Click"/>
-                        <Button x:Name="btnModifierCourse"  Content="Modifier"  Width="120" Height="25" Margin="10,0,0,0" Click="btnModifier_Click"/>
-                        <Button x:Name="btnSupprimerCourse"   Content="Supprimer"  Width="120" Height="25" Margin="10,0,0,0" Click="btnSupprimer_Click"/>
-                        <Button x:Name="btnAnnulerCourse"   Content="Annuler"  Width="120" Height="25" Margin="10,0,0,0" Click="btnAnnuler_Click"/>
                     </StackPanel>
+
                 </StackPanel>
             </TabItem>
             <TabItem Header="Coureurs">
@@ -89,14 +84,7 @@
                             </StackPanel>
                         </StackPanel>
                     </GroupBox>
-                    <StackPanel Margin="10">
-                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
-                            <Button x:Name="btnAjoutCourse2"  Content="Ajouter"  Width="120" Height="25" Margin="10,0,0,0" Click="btnAjout_Click"/>
-                            <Button x:Name="btnModifierCourse2"  Content="Modifier"  Width="120" Height="25" Margin="10,0,0,0" Click="btnModifier_Click"/>
-                            <Button x:Name="btnSupprimerCourse2"   Content="Supprimer"  Width="120" Height="25" Margin="10,0,0,0" Click="btnSupprimer_Click"/>
-                            <Button x:Name="btnAnnulerCourse2"   Content="Annuler"  Width="120" Height="25" Margin="10,0,0,0" Click="btnAnnuler_Click"/>
-                        </StackPanel>
-                    </StackPanel>
+
                 </StackPanel>
 
 
@@ -105,5 +93,12 @@
 
 
         </TabControl>
+        <StackPanel Margin="10">
+            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
+                <Button x:Name="btnAjoutCourse2"  Content="Ajouter"  Width="120" Height="25" Margin="10,0,0,0" Click="btnClick_Click"/>
+
+                <Button x:Name="btnAnnulerCourse2"   Content="Annuler"  Width="120" Height="25" Margin="10,0,0,0" Click="btnAnnuler_Click"/>
+            </StackPanel>
+        </StackPanel>
     </StackPanel>
 </Window>

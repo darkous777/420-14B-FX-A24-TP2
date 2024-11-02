@@ -229,8 +229,15 @@ namespace _420_14B_FX_A24_TP2.classes
             Distance = distance;
            
         }
+        /// <summary>
+        /// Format d'affichage sur WPF
+        /// </summary>
+        /// <returns>L'affichage attendu de chaque réservations</returns>
+        public override string ToString()
+        {
+            return $"{Nom,-20} {Ville,-9} {Province,-15} {Date,-15}";
+        }
 
-      
 
 
 

@@ -29,18 +29,11 @@ namespace _420_14B_FX_A24_TP2
 
         }
 
-        private void btnAjout_Click(object sender, RoutedEventArgs e)
+        private void btnClick_Click(object sender, RoutedEventArgs e)
         {
 
         }
-        private void btnModifier_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
-        private void btnSupprimer_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
         private void btnAnnuler_Click(object sender, RoutedEventArgs e)
         {
 
@@ -60,7 +53,5 @@ namespace _420_14B_FX_A24_TP2
         {
 
         }
-
-
     }
 }
