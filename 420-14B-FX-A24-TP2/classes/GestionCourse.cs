@@ -42,7 +42,7 @@ namespace _420_14B_FX_A24_TP2.classes
 
             foreach (Course c in Courses)
             {
-                if (c.Nom == course.Nom && c.Date == course.Date)
+                if (c.Nom.ToLower().Trim() == course.Nom.ToLower().Trim() && c.Date == course.Date)
                     return true;
             }
 
@@ -120,6 +120,34 @@ namespace _420_14B_FX_A24_TP2.classes
                 }
             }
         }
+        /// <summary>
+        /// Méthode permettanr de supprimer une course dans la liste de course
+        /// </summary>
+        /// <param name="course">Course à vérifier si non existante sinon supprimer de la liste</param>
+        /// <returns>Vrai si la course a bien été supprimée sinon Faux</returns>
+        /// <exception cref="ArgumentNullException">Excecption retournant une exception si nulle</exception>
+        /// <exception cref="InvalidOperationException">Exception retournant une exception si existante</exception>
+        public bool SupprimerCourse(Course course)
+        {
+            if (course is null)
+                throw new ArgumentNullException(nameof(course), "La course ne peut être nul!");
+
+            if (!Existe(course))
+                throw new InvalidOperationException("Impossible de supprimer la course, car elle n'existe pas dans la liste!");
+
+            foreach (Course c in Courses)
+            {
+                if (c.Nom.ToLower().Trim() == course.Nom.ToLower().Trim() && c.Date == course.Date)
+                {
+                    Courses.Remove(course);
+                    return true;
+                }
+            }
+
+            return false;
+
+        }
+
     }
 }
 
