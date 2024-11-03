@@ -147,7 +147,15 @@ namespace _420_14B_FX_A24_TP2.classes
             return false;
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cheminFichierCourses"></param>
+        /// <param name="cheminFichierCoureurs"></param>
+        public void EnregistrerCourses(string cheminFichierCourses, string cheminFichierCoureurs)
+        {
 
+        }
     }
 }
 

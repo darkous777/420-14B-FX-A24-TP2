@@ -21,7 +21,9 @@ namespace _420_14B_FX_A24_TP2
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _gestionCourse = new GestionCourse(CHEMIN_FICHIER_COURSE_CSV, CHEMIN_FICHIER_COUREURS_CSV);
-            lstCourses.Items.Add(_gestionCourse.);
+
+            foreach (Course c in _gestionCourse.Courses)
+                lstCourses.Items.Add(c);
         }
 
         private void AfficherListeCourses()

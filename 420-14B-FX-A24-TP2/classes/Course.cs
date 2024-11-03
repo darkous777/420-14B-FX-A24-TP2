@@ -235,7 +235,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <returns>L'affichage attendu de chaque réservations</returns>
         public override string ToString()
         {
-            return $"{Nom,-20} {Ville,-9} {Province,-15} {Date,-15}";
+            return $"{Nom,-37} {Ville,-27} {Province,-20} {Date}";
         }
 
 
