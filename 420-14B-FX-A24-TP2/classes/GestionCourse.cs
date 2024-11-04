@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace _420_14B_FX_A24_TP2.classes
 {
@@ -147,13 +148,67 @@ namespace _420_14B_FX_A24_TP2.classes
             return false;
 
         }
-        /// <summary>
-        /// 
+/// <summary>
+        /// Méthode permettant l'enregistrement des courses et coureurs dans un CSV
         /// </summary>
-        /// <param name="cheminFichierCourses"></param>
-        /// <param name="cheminFichierCoureurs"></param>
+        /// <param name="cheminFichierCourses">Chemin CSV permettant d'acceder au informations des courses</param>
+        /// <param name="cheminFichierCoureurs">Chemin CSV permettant d'acceder au informations des coureurs</param>
+        /// <exception cref="ArgumentException">Exception retournant un message si le chemin d'un fichier est nulle, vide ou contient que des espaces</exception>
         public void EnregistrerCourses(string cheminFichierCourses, string cheminFichierCoureurs)
         {
+            if (string.IsNullOrWhiteSpace(cheminFichierCoureurs) || cheminFichierCoureurs == "")
+            {
+                throw new ArgumentException("Le chemin du fichier Coureur ne peut être nul ou vide, ni contenir uniquement des espaces.", nameof(cheminFichierCoureurs));
+            }
+
+            if (string.IsNullOrWhiteSpace(cheminFichierCourses) || cheminFichierCourses == "")
+            {
+                throw new ArgumentException("Le chemin du fichier Course ne peut être nul ou vide, ni contenir uniquement des espaces.", nameof(cheminFichierCourses));
+            }
+
+            #region
+            //if (cheminFichierCoureurs is null)
+            //{
+            //    throw new ArgumentNullException(nameof(cheminFichierCoureurs), "Le chemin du fichier Coureur ne peut être nul!");
+            //}
+            //else if (cheminFichierCoureurs == "")
+            //{
+            //    throw new ArgumentException("Le chemin du fichier ne peut être vide!");
+            //}
+            //else if (cheminFichierCoureurs.Trim().Contains(' '))
+            //{
+            //    throw new ArgumentException("Le chemin du fichier ne peut être rempli d'espace!");
+            //}
+
+            //if (cheminFichierCourses is null)
+            //{
+            //    throw new ArgumentNullException(nameof(cheminFichierCourses), "Le chemin du fichier Course ne peut être nul!");
+            //}
+            //else if (cheminFichierCourses == "")
+            //{
+            //    throw new ArgumentException("Le chemin du fichier ne peut être vide!");
+            //}
+            //else if (cheminFichierCourses.Trim().Contains(' '))
+            //{
+            //    throw new ArgumentException("Le chemin du fichier ne peut être rempli d'espace!");
+            //}
+            #endregion
+
+            string infoCourses = "Id;nom;ville;province;date;type;distance\n";
+            string infoCoureurs = "IdCourse;dossard;nom;prenom;ville;province;categorie;temps;abandon\n";
+
+            foreach (Course course in Courses)
+            {
+                infoCourses += $"{course.Id};{course.Nom};{course.Ville};{course.Province};{course.Date};{course.TypeCourse};{course.Distance}\n";
+                foreach (Coureur coureur in course.Coureurs)
+                {
+                    infoCoureurs += $"{course.Id};{coureur.Dossard};{coureur.Nom};{coureur.Prenom};{coureur.Ville};{coureur.Province};{coureur.Categorie};{coureur.Temps};{coureur.Abandon}\n";
+
+                }
+            }
+
+            Utilitaire.EnregistrerDonnees(cheminFichierCourses, infoCourses);
+            Utilitaire.EnregistrerDonnees(cheminFichierCoureurs, infoCoureurs);
 
         }
     }
