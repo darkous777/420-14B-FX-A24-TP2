@@ -1,0 +1,51 @@
+﻿<Window x:Class="_420_14B_FX_A24_TP2.FormCoureur"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_420_14B_FX_A24_TP2"
+        mc:Ignorable="d"
+        Title="FormCoureur" Height="350" Width="300">
+    <StackPanel Margin="10">
+        <TextBlock HorizontalAlignment="Center" FontWeight="Bold" FontSize="20">
+            Ajout d'un coureur
+        </TextBlock>
+
+        <StackPanel Margin="5" Orientation="Horizontal">
+            <Label Width="80">No.Dossard</Label>
+            <TextBox Width="50" Height="20"></TextBox>
+        </StackPanel>
+        <StackPanel Margin="5" Orientation="Horizontal">
+            <Label Width="80">Nom</Label>
+            <TextBox Width="150" Height="20"></TextBox>
+        </StackPanel>
+        <StackPanel Margin="5" Orientation="Horizontal">
+            <Label Width="80">Prenom</Label>
+            <TextBox Width="150" Height="20"></TextBox>
+        </StackPanel>
+        <StackPanel Margin="5" Orientation="Horizontal">
+            <Label Width="80">Ville</Label>
+            <TextBox Width="150" Height="20"></TextBox>
+        </StackPanel>
+        <StackPanel Margin="5" Orientation="Horizontal">
+            <Label Width="80">Province</Label>
+            <ComboBox Width="150" Height="20">
+                <ComboBoxItem>Alberta</ComboBoxItem>
+                <ComboBoxItem>ColombieBritannique</ComboBoxItem>
+                <ComboBoxItem>IlePrinceEdouard</ComboBoxItem>
+                <ComboBoxItem>Manitoba</ComboBoxItem>
+                <ComboBoxItem>NouveauBrunswick</ComboBoxItem>
+                <ComboBoxItem>NouvelleEcosse</ComboBoxItem>
+                <ComboBoxItem>Nunavut</ComboBoxItem>
+                <ComboBoxItem>Ontario</ComboBoxItem>
+                <ComboBoxItem>Quebec</ComboBoxItem>
+                <ComboBoxItem>Saskatchewan</ComboBoxItem>
+                <ComboBoxItem>TerreNeuveLabrador</ComboBoxItem>
+                <ComboBoxItem>TerritoiresNordOuest</ComboBoxItem>
+                <ComboBoxItem>Yukon</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        
+
+    </StackPanel>
+</Window>
