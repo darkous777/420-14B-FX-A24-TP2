@@ -8,10 +8,10 @@ namespace _420_14B_FX_A24_TP2.classes
     /// </summary>
     public class Coureur
     {
-        const ushort NB_MINIMUM_DOSSARD = 1;
-        const byte NB_MINIMUM_CARACT_NOM = 3;
-        const byte NB_MINIMUM_CARACT_PRENOM = 3;
-        const byte NB_MINIMUM_CARACT_VILLE = 4;
+        public const ushort DOSSARD_VAL_MIN = 1;
+        public const byte NOM_NB_CARC_MIN = 3;
+        public const byte PRENOM_NB_CARC_MIN = 3;
+        public const byte VILLE_NB_CARC_MIN = 4;
 
         /// <summary>
         /// Numéro du dossard
