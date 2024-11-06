@@ -1,5 +1,6 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
+using System.Windows.Input;
 
 namespace _420_14B_FX_A24_TP2.classes
 {
@@ -8,8 +9,10 @@ namespace _420_14B_FX_A24_TP2.classes
     /// </summary>
     public class Course
     {
-  
-       
+
+        const byte NB_MIN_CARACT_NOM = 3;
+        const byte NB_MIN_CARACT_VILLE = 4;
+        const byte NB_MIN_DISTANCE = 1;
 
 
         /// <summary>
@@ -64,10 +67,13 @@ namespace _420_14B_FX_A24_TP2.classes
         public Guid Id
         {
             get { return _id; }
-            set {
-                    
-               
-                _id = value; 
+            set
+            {
+
+                if (value != Guid.Empty)
+                {
+                    _id = value;
+                }
             }
         }
 
@@ -83,10 +89,15 @@ namespace _420_14B_FX_A24_TP2.classes
         {
             get { return _nom; }
 
-            set 
+            set
             {
+                if (String.IsNullOrEmpty(value) && value.Trim().Length < NB_MIN_CARACT_NOM)
+                {
+                    throw new ArgumentNullException(nameof(Nom), $"Le nom ne peut être null ou vide.");
+                    throw new ArgumentException(nameof(Nom), $"Le nom doit contenir au moins {NB_MIN_CARACT_NOM} caractères");
+                }
 
-                _nom = value.Trim().ToUpper(); 
+                _nom = value.Trim().ToUpper();
             }
         }
 
@@ -111,11 +122,15 @@ namespace _420_14B_FX_A24_TP2.classes
         public string Ville
         {
             get { return _ville; }
-            set 
+            set
             {
-             
+                if (String.IsNullOrEmpty(value) && value.Trim().Length < NB_MIN_CARACT_VILLE)
+                {
+                    throw new ArgumentNullException(nameof(Ville), $"La ville ne peut être null ou vide.");
+                    throw new ArgumentException(nameof(Ville), $"La ville doit contenir au moins {NB_MIN_CARACT_VILLE} caractères.");
+                }
 
-                _ville = value.Trim(); 
+                _ville = value.Trim();
             }
         }
 
@@ -130,10 +145,12 @@ namespace _420_14B_FX_A24_TP2.classes
         public Province Province
         {
             get { return _province; }
-            set 
+            set
             {
+                if (!(Enum.IsDefined(typeof(Province), value)))
+                    throw new ArgumentOutOfRangeException(nameof(Province), $"La valeur {value} n'est pas existante dans les choix.");
 
-                _province = value; 
+                _province = value;
             }
         }
 
@@ -146,10 +163,12 @@ namespace _420_14B_FX_A24_TP2.classes
         public TypeCourse TypeCourse
         {
             get { return _typeCourse; }
-            set 
+            set
             {
-             
-                _typeCourse = value; 
+                if (!(Enum.IsDefined(typeof(TypeCourse), value)))
+                    throw new ArgumentOutOfRangeException(nameof(TypeCourse), $"La valeur {value} n'est pas existante dans les choix.");
+
+                _typeCourse = value;
             }
         }
 
@@ -161,10 +180,12 @@ namespace _420_14B_FX_A24_TP2.classes
         public ushort Distance
         {
             get { return _distance; }
-            set 
+            set
             {
-               
-                _distance = value; 
+                if (value < NB_MIN_DISTANCE)
+                    throw new ArgumentOutOfRangeException(nameof(Distance), $"La distance doit être supérieur à {NB_MIN_DISTANCE}");
+
+                _distance = value;
             }
         }
 
@@ -179,7 +200,7 @@ namespace _420_14B_FX_A24_TP2.classes
         }
 
 
-     
+
 
         /// <summary>
         ///Obtien le nombre de coureurs participants à la course
@@ -187,10 +208,11 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <value>Obtien la valeur de l'attribut :  _coureurs.Count.</value>
         public int NbParticipants
         {
-            get {
+            get
+            {
                 throw new NotImplementedException();
             }
-      
+
         }
 
         /// <summary>
@@ -199,14 +221,15 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <value>Obtien la valeur retourné par la méthode : CalculerTempsCourseMoyen() </value>
         public TimeSpan TempCourseMoyen
         {
-            get { 
-                throw new NotImplementedException(); 
+            get
+            {
+                throw new NotImplementedException();
             }
-          
+
         }
 
 
-   
+
 
         /// <summary>
         /// Permet de constuire un objet de type Course
@@ -218,8 +241,10 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <param name="typeCourse">Type de course</param>
         /// <param name="distance">Distance de la course</param>
         /// <remarks>Initialise une liste de coureurs vide</remarks>
-        public Course(Guid id, string nom, DateOnly date, string ville, Province province, TypeCourse typeCourse, ushort distance )
+        public Course(Guid id, string nom, DateOnly date, string ville, Province province, TypeCourse typeCourse, ushort distance)
         {
+            Coureurs = new List<Coureur>();
+
             Id = id;
             Nom = nom;
             Date = date;
@@ -227,15 +252,89 @@ namespace _420_14B_FX_A24_TP2.classes
             Province = province;
             TypeCourse = typeCourse;
             Distance = distance;
-           
         }
+        ///// <summary>
+        ///// Méthode permettant de vérifier si une course est déjà existante dans la liste de courses
+        ///// </summary>
+        ///// <param name="course">Course à vérifier si existante</param>
+        ///// <returns>Si la course est existante dans la liste de course (true/false)</returns>
+        ///// <exception cref="ArgumentNullException">Excecption retournant une exception si nulle</exception>
+        //public bool Existe(Course course)
+        //{
+        //    if (course is null)
+        //        throw new ArgumentNullException(nameof(course), "Le Course ne peut être nul!");
+
+        //    foreach (Course c in Courses)
+        //    {
+        //        if (c.Nom.ToLower().Trim() == course.Nom.ToLower().Trim() && c.Date == course.Date)
+        //            return true;
+        //    }
+
+        //    return false;
+        //}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="coureur"></param>
+        public void AjouterCoureur(Coureur coureur)
+        {
+            if (coureur is null)
+                throw new ArgumentNullException(nameof(coureur), "Le coureur ne peut être nul!");
+
+            foreach (Coureur c in Coureurs)
+            {
+
+                if (c.Dossard == coureur.Dossard)
+                {
+                    throw new InvalidOperationException("Impossible d'ajouter le coureur, car le dossard existe déjà dans la liste!");
+
+                }
+                else if (c.Nom.ToLower().Trim() == coureur.Nom.ToLower().Trim() && c.Prenom.ToLower().Trim() == coureur.Prenom.ToLower().Trim())
+                {
+                    throw new InvalidOperationException("Impossible d'ajouter le coureur, car les informations du coureur existe déjà dans la liste!");
+                }
+            }
+            Coureurs.Add(coureur);
+        }
+
         /// <summary>
         /// Format d'affichage sur WPF
         /// </summary>
-        /// <returns>L'affichage attendu de chaque réservations</returns>
+        /// <returns>L'affichage attendu de chaque coureur</returns>
         public override string ToString()
         {
             return $"{Nom,-37} {Ville,-27} {Province,-20} {Date}";
+        }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="course1"></param>
+        ///// <param name="course2"></param>
+        ///// <returns></returns>
+        //public static bool operator ==(Course course1, Course course2)
+        //{
+        //    if (Object.ReferenceEquals(course1, course2))
+        //        return true;
+
+        //    if ((Object)course1 == null || (Object)course2 == null)
+        //        return false;
+
+        //    //if (fractionA is null || fractionB is null)
+        //    //    return false;
+
+        //    return course1 == course2;
+        //}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object? obj)
+        {
+            if (obj is null || obj is not Course)
+                return false;
+
+            return this == (Course)obj;
         }
 
 

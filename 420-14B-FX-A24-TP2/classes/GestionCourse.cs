@@ -148,7 +148,7 @@ namespace _420_14B_FX_A24_TP2.classes
             return false;
 
         }
-/// <summary>
+        /// <summary>
         /// Méthode permettant l'enregistrement des courses et coureurs dans un CSV
         /// </summary>
         /// <param name="cheminFichierCourses">Chemin CSV permettant d'acceder au informations des courses</param>
@@ -156,12 +156,12 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <exception cref="ArgumentException">Exception retournant un message si le chemin d'un fichier est nulle, vide ou contient que des espaces</exception>
         public void EnregistrerCourses(string cheminFichierCourses, string cheminFichierCoureurs)
         {
-            if (string.IsNullOrWhiteSpace(cheminFichierCoureurs) || cheminFichierCoureurs == "")
+            if (string.IsNullOrWhiteSpace(cheminFichierCoureurs))
             {
                 throw new ArgumentException("Le chemin du fichier Coureur ne peut être nul ou vide, ni contenir uniquement des espaces.", nameof(cheminFichierCoureurs));
             }
 
-            if (string.IsNullOrWhiteSpace(cheminFichierCourses) || cheminFichierCourses == "")
+            if (string.IsNullOrWhiteSpace(cheminFichierCourses))
             {
                 throw new ArgumentException("Le chemin du fichier Course ne peut être nul ou vide, ni contenir uniquement des espaces.", nameof(cheminFichierCourses));
             }
