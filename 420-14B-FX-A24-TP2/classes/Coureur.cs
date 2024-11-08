@@ -8,7 +8,7 @@ namespace _420_14B_FX_A24_TP2.classes
     /// <summary>
     /// Classe représentant un coureur
     /// </summary>
-    public class Coureur : IComparable<Coureur>
+    public class Coureur
     {
         public const ushort DOSSARD_VAL_MIN = 1;
         public const byte NOM_NB_CARC_MIN = 3;
@@ -240,7 +240,7 @@ namespace _420_14B_FX_A24_TP2.classes
 
             if (coureur1.Nom.ToLower().Trim() == coureur2.Nom.ToLower().Trim() && coureur1.Prenom == coureur2.Prenom && coureur1.Ville == coureur2.Ville && coureur1.Province == coureur2.Province && coureur1.Categorie == coureur2.Categorie && coureur1.Rang == coureur2.Rang && coureur1.Temps == coureur2.Temps && coureur1.Abandon == coureur2.Abandon)
             {
-                return true;4
+                return true;
             }
 
             return false;
@@ -267,26 +267,26 @@ namespace _420_14B_FX_A24_TP2.classes
 
             return this == (Coureur)obj;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
-        public int CompareTo(Coureur? other)
-        {
-            if (other is null)
-                return 1;
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    /// <param name="other"></param>
+    //    /// <returns></returns>
+    //    public int CompareTo(Coureur? other)
+    //    {
+    //        if (other is null)
+    //            return 1;
 
-            int reseltatComparaison = Dossard.CompareTo(other.Dossard);
+    //        int reseltatComparaison = Dossard.CompareTo(other.Dossard);
 
-            if (reseltatComparaison != 0)
-                
+    //        if (reseltatComparaison != 0)
+    //            return reseltatComparaison * -1;
 
-            //Tri basé sur le nom
-            return String.Compare(Dossard., other.Dossard,
-                CultureInfo.InvariantCulture,
-                CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase);
-        }
+    //        //Tri basé sur le nom
+    //        return String.Compare(Dossard., other.Dossard,
+    //            CultureInfo.InvariantCulture,
+    //            CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase);
+    //    }
 
 
     }

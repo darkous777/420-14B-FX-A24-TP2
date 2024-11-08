@@ -274,7 +274,6 @@ namespace _420_14B_FX_A24_TP2.classes
             //if (c.Nom.ToLower().Trim() == course.Nom.ToLower().Trim() && c.Date == course.Date)
             //    return true;
 
-
             return false;
         }
         /// <summary>
@@ -289,15 +288,41 @@ namespace _420_14B_FX_A24_TP2.classes
             if (Existe(coureur))
                 throw new InvalidOperationException("Impossible d'ajouter le coureur, car les informations du coureur existe  déjà dans la liste!");
 
-
-            //else if (c.Nom.ToLower().Trim() == coureur.Nom.ToLower().Trim() && c.Prenom.ToLower().Trim() == coureur.Prenom.ToLower().Trim())
-            //{
-            //    throw new InvalidOperationException("Impossible d'ajouter le coureur, car les informations du coureur existe déjà dans la liste!");
-            //}
-
             Coureurs.Add(coureur);
+            Coureurs.Sort();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="noDossard"></param>
+        /// <returns></returns>
+        public Coureur ObtenirCoureurParNoDossard(ushort noDossard)
+        {
+            return Coureurs[0];
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="coureur"></param>
+        public void SupprimerCoureur(Coureur coureur)
+        {
 
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private TimeSpan CalculerTempsCourseMoyen()
+        {
+            return CalculerTempsCourseMoyen();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public void TrierCoureurs()
+        {
+
+        }
         /// <summary>
         /// Format d'affichage sur WPF
         /// </summary>
