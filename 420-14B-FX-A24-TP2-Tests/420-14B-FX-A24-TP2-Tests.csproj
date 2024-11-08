@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <Compile Remove="CoureurTests.cs" />
-    <Compile Remove="CourseTests.cs" />
   </ItemGroup>
 
   <ItemGroup>

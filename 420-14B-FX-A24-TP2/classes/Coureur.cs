@@ -1,5 +1,7 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Globalization;
 
 namespace _420_14B_FX_A24_TP2.classes
 {
@@ -249,7 +251,69 @@ namespace _420_14B_FX_A24_TP2.classes
 
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="coureur1"></param>
+        /// <param name="coureur2"></param>
+        /// <returns></returns>
+        public static bool operator ==(Coureur coureur1, Coureur coureur2)
+        {
+            if (object.ReferenceEquals(coureur1, coureur2))
+                return true;
 
+            if ((object)coureur1 == null || (object)coureur2 == null)
+                return false;
+
+            if (coureur1.Nom.ToLower().Trim() == coureur2.Nom.ToLower().Trim() && coureur1.Prenom == coureur2.Prenom && coureur1.Ville == coureur2.Ville && coureur1.Province == coureur2.Province && coureur1.Categorie == coureur2.Categorie && coureur1.Rang == coureur2.Rang && coureur1.Temps == coureur2.Temps && coureur1.Abandon == coureur2.Abandon)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="coureur1"></param>
+        /// <param name="coureur2"></param>
+        /// <returns></returns>
+        public static bool operator !=(Coureur coureur1, Coureur coureur2)
+        {
+            return !(coureur1 == coureur2);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object? obj)
+        {
+            if (obj is null || obj is not Coureur)
+                return false;
+
+            return this == (Coureur)obj;
+        }
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    /// <param name="other"></param>
+    //    /// <returns></returns>
+    //    public int CompareTo(Coureur? other)
+    //    {
+    //        if (other is null)
+    //            return 1;
+
+    //        int reseltatComparaison = Dossard.CompareTo(other.Dossard);
+
+    //        if (reseltatComparaison != 0)
+    //            return reseltatComparaison * -1;
+
+    //        //Tri basé sur le nom
+    //        return String.Compare(Dossard., other.Dossard,
+    //            CultureInfo.InvariantCulture,
+    //            CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase);
+    //    }
 
 
     }

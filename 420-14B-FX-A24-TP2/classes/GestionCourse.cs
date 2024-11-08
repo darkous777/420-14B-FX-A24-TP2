@@ -43,11 +43,8 @@ namespace _420_14B_FX_A24_TP2.classes
             if (course is null)
                 throw new ArgumentNullException(nameof(course), "Le Course ne peut être nul!");
 
-            foreach (Course c in Courses)
-            {
-                if (c.Nom.ToLower().Trim().CompareTo(course.Nom.ToLower().Trim()) == 0 && c.Date == course.Date)
-                    return true;
-            }
+            if(Courses.Contains(course))
+                return true;
 
             return false;
         }
@@ -78,22 +75,22 @@ namespace _420_14B_FX_A24_TP2.classes
         {
             string[] vectLignesCourses = Utilitaire.ChargerDonnees(cheminFichierCourses);
             string[] champs;
-           
+
             Course course;
-      
 
-                for (int i = 1; i < vectLignesCourses.Length; i++)
-                {
-                    champs = vectLignesCourses[i].Split(';');
-                    course = new Course(Guid.Parse(champs[0]), champs[1], DateOnly.FromDateTime(DateTime.Parse(champs[4].ToString())), champs[2], (enums.Province)Convert.ToUInt16(champs[3]), (enums.TypeCourse)Convert.ToUInt16(champs[5]), (ushort)Convert.ToInt16(champs[6]));
 
-                    //int comparaison = Courses[i].CompareTo(course);
-                    
-                    ChargerCoureurs(course, cheminFichierCoureurs);
-                    Courses.Add(course);
-                }
-                Courses.Sort();
-            
+            for (int i = 1; i < vectLignesCourses.Length; i++)
+            {
+                champs = vectLignesCourses[i].Split(';');
+                course = new Course(Guid.Parse(champs[0]), champs[1], DateOnly.FromDateTime(DateTime.Parse(champs[4].ToString())), champs[2], (enums.Province)Convert.ToUInt16(champs[3]), (enums.TypeCourse)Convert.ToUInt16(champs[5]), (ushort)Convert.ToInt16(champs[6]));
+
+                //int comparaison = Courses[i].CompareTo(course);
+
+                ChargerCoureurs(course, cheminFichierCoureurs);
+                Courses.Add(course);
+            }
+            Courses.Sort();
+
 
 
 
