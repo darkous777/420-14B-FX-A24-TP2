@@ -13,6 +13,7 @@ namespace _420_14B_FX_A24_TP2.classes
         public const byte PRENOM_NB_CARC_MIN = 3;
         public const byte VILLE_NB_CARC_MIN = 4;
 
+
         /// <summary>
         /// Numéro du dossard
         /// </summary>
@@ -28,7 +29,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// </summary>
         private string _prenom;
 
-     
+
         /// <summary>
         /// Catégorie d'âge du coureur
         /// </summary>
@@ -55,14 +56,14 @@ namespace _420_14B_FX_A24_TP2.classes
         /// </summary>
         private ushort _rang;
 
-       
+
         /// <summary>
         /// Indicateur d'abandon de la course
         /// </summary>
         private bool _abandon;
 
 
-       
+
 
         /// <summary>
         ///Obtien ou modifie le numéro du dossard.
@@ -72,10 +73,12 @@ namespace _420_14B_FX_A24_TP2.classes
         public ushort Dossard
         {
             get { return _dossard; }
-            set 
-            {                
-                _dossard = value; 
-            
+            set
+            {
+                if (value < DOSSARD_VAL_MIN)
+                    throw new ArgumentOutOfRangeException(nameof(Dossard), $"Le numéro du dossard doit être superieur ou égale à 1");
+                _dossard = value;
+
             }
         }
 
@@ -88,10 +91,15 @@ namespace _420_14B_FX_A24_TP2.classes
         public string Nom
         {
             get { return _nom; }
-            set 
+            set
             {
+                if (string.IsNullOrEmpty(value) || value.Trim().Length < NOM_NB_CARC_MIN)
+                {
+                    throw new ArgumentNullException(nameof(Nom), $"Le nom ne peut pas être null ou vide");
+                    throw new ArgumentOutOfRangeException(nameof(Nom), $"Le nom doit contenir au moins {NOM_NB_CARC_MIN} caractères ");
+                }
 
-                _nom = value.Trim(); 
+                _nom = value.Trim();
             }
         }
 
@@ -107,11 +115,18 @@ namespace _420_14B_FX_A24_TP2.classes
         public string Prenom
         {
             get { return _prenom; }
-            set 
+            set
             {
-                
+                if (string.IsNullOrEmpty(value) || value.Trim().Length < PRENOM_NB_CARC_MIN)
+                {
+                    throw new ArgumentNullException(nameof(Prenom), $"Le prénom ne peut pas être null ou vide");
 
-                _prenom = value.Trim(); 
+                    throw new ArgumentOutOfRangeException(nameof(Prenom), $"Le prénom doit contenir au moins {PRENOM_NB_CARC_MIN} caractères ");
+
+                }
+
+
+                _prenom = value.Trim();
             }
         }
 
@@ -124,11 +139,15 @@ namespace _420_14B_FX_A24_TP2.classes
         public Categorie Categorie
         {
             get { return _categorie; }
-            set 
+            set
             {
-               
+                if (!(Enum.IsDefined(typeof(Categorie), value)))
+                {
+                    throw new ArgumentOutOfRangeException(nameof(Categorie), $"Veuillez séléctionner une catégorie existante");
+                }
 
-                _categorie = value; 
+
+                _categorie = value;
             }
         }
 
@@ -141,10 +160,14 @@ namespace _420_14B_FX_A24_TP2.classes
         public string Ville
         {
             get { return _ville; }
-            set 
+            set
             {
-                
-                _ville = value.Trim(); 
+                if (string.IsNullOrEmpty(value) || value.Trim().Length < VILLE_NB_CARC_MIN)
+                {
+                    throw new ArgumentNullException(nameof(Ville), $"La ville ne peut pas être null ou vide");
+                    throw new ArgumentOutOfRangeException(nameof(Nom), $"Le nom de la ville doit contenir au moins {VILLE_NB_CARC_MIN} caractères ");
+                }
+                _ville = value.Trim();
             }
         }
 
@@ -156,10 +179,14 @@ namespace _420_14B_FX_A24_TP2.classes
         public Province Province
         {
             get { return _province; }
-            set 
+            set
             {
+                if(!(Enum.IsDefined(typeof(Categorie), value)))
+                {
+                    throw new ArgumentOutOfRangeException(nameof(Province), $"Veuillez séléctionner une province existante");
+                }
 
-                _province = value; 
+                _province = value;
             }
         }
 
@@ -171,7 +198,7 @@ namespace _420_14B_FX_A24_TP2.classes
         public TimeSpan Temps
         {
             get { return _temps; }
-            set  { _temps = value; }
+            set { _temps = value; }
         }
         /// <summary>
         /// Obtient ou défini le rang du coureur
@@ -193,7 +220,7 @@ namespace _420_14B_FX_A24_TP2.classes
             set { _abandon = value; }
         }
 
- 
+
 
         /// <summary>
         /// Permet de construire un objet Coureur
@@ -206,10 +233,10 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <param name="province">Province du coureur</param>
         /// <param name="temps">Temps de course du coureur</param>
         /// <param name="abandon">Indicateur d'abandon de la course. Faux par défaut</param>
-     
+
         public Coureur(ushort dossard, string nom, string prenom, Categorie categorie, string ville, Province province, TimeSpan temps, bool abandon = false)
         {
-           Dossard = dossard;
+            Dossard = dossard;
             Nom = nom;
             Prenom = prenom;
             Categorie = categorie;
@@ -217,7 +244,7 @@ namespace _420_14B_FX_A24_TP2.classes
             Province = province;
             Temps = temps;
             Abandon = abandon;
-            
+
         }
 
 
