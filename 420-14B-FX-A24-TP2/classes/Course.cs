@@ -1,5 +1,7 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
+using System.Globalization;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace _420_14B_FX_A24_TP2.classes
@@ -7,7 +9,7 @@ namespace _420_14B_FX_A24_TP2.classes
     /// <summary>
     /// Classe représentant une course à pied
     /// </summary>
-    public class Course
+    public class Course : IComparable<Course>
     {
 
         const byte NB_MIN_CARACT_NOM = 3;
@@ -337,8 +339,20 @@ namespace _420_14B_FX_A24_TP2.classes
             return this == (Course)obj;
         }
 
+        public int CompareTo(Course? other)
+        {
+            if (other is null)
+                return 1;
 
+            int reseltatComparaison = Date.CompareTo(other.Date);
 
+            if (reseltatComparaison != 0)
+                return reseltatComparaison * -1;
 
+            //Tri basé sur le nom
+            return String.Compare(Nom, other.Nom,
+                CultureInfo.InvariantCulture,
+                CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase);
+        }
     }
 }

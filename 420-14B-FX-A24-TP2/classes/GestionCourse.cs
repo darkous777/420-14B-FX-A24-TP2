@@ -43,7 +43,7 @@ namespace _420_14B_FX_A24_TP2.classes
 
             foreach (Course c in Courses)
             {
-                if (c.Nom.ToLower().Trim() == course.Nom.ToLower().Trim() && c.Date == course.Date)
+                if (c.Nom.ToLower().Trim().CompareTo(course.Nom.ToLower().Trim()) == 0 && c.Date == course.Date)
                     return true;
             }
 
@@ -65,6 +65,7 @@ namespace _420_14B_FX_A24_TP2.classes
 
 
             Courses.Add(course);
+            Courses.Sort();
         }
         /// <summary>
         /// Méthode permettant charger les courses dans une liste
@@ -86,10 +87,12 @@ namespace _420_14B_FX_A24_TP2.classes
                     champs = vectLignesCourses[i].Split(';');
                     course = new Course(Guid.Parse(champs[0]), champs[1], DateOnly.FromDateTime(DateTime.Parse(champs[4].ToString())), champs[2], (enums.Province)Convert.ToUInt16(champs[3]), (enums.TypeCourse)Convert.ToUInt16(champs[5]), (ushort)Convert.ToInt16(champs[6]));
 
+                    //int comparaison = Courses[i].CompareTo(course);
+                    
                     ChargerCoureurs(course, cheminFichierCoureurs);
-
                     Courses.Add(course);
                 }
+                Courses.Sort();
             }
             catch (Exception ex)
             {
