@@ -1,6 +1,7 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -12,9 +13,9 @@ namespace _420_14B_FX_A24_TP2.classes
     public class Course : IComparable<Course>
     {
 
-        const byte NB_MIN_CARACT_NOM = 3;
-        const byte NB_MIN_CARACT_VILLE = 4;
-        const byte NB_MIN_DISTANCE = 1;
+        public const byte NOM_NB_CAR_MIN = 3;
+        public const byte VILLE_NB_CAR_MIN = 4;
+        public const byte DISTANCE_VAL_MIN = 1;
 
 
         /// <summary>
@@ -93,10 +94,10 @@ namespace _420_14B_FX_A24_TP2.classes
 
             set
             {
-                if (String.IsNullOrEmpty(value) && value.Trim().Length < NB_MIN_CARACT_NOM)
+                if (String.IsNullOrEmpty(value) && value.Trim().Length < NOM_NB_CAR_MIN)
                 {
                     throw new ArgumentNullException(nameof(Nom), $"Le nom ne peut être null ou vide.");
-                    throw new ArgumentException(nameof(Nom), $"Le nom doit contenir au moins {NB_MIN_CARACT_NOM} caractères");
+                    throw new ArgumentException(nameof(Nom), $"Le nom doit contenir au moins {NOM_NB_CAR_MIN} caractères");
                 }
 
                 _nom = value.Trim().ToUpper();
@@ -126,10 +127,10 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _ville; }
             set
             {
-                if (String.IsNullOrEmpty(value) && value.Trim().Length < NB_MIN_CARACT_VILLE)
+                if (String.IsNullOrEmpty(value) && value.Trim().Length < VILLE_NB_CAR_MIN)
                 {
                     throw new ArgumentNullException(nameof(Ville), $"La ville ne peut être null ou vide.");
-                    throw new ArgumentException(nameof(Ville), $"La ville doit contenir au moins {NB_MIN_CARACT_VILLE} caractères.");
+                    throw new ArgumentException(nameof(Ville), $"La ville doit contenir au moins {VILLE_NB_CAR_MIN} caractères.");
                 }
 
                 _ville = value.Trim();
@@ -184,8 +185,8 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _distance; }
             set
             {
-                if (value < NB_MIN_DISTANCE)
-                    throw new ArgumentOutOfRangeException(nameof(Distance), $"La distance doit être supérieur à {NB_MIN_DISTANCE}");
+                if (value < DISTANCE_VAL_MIN)
+                    throw new ArgumentOutOfRangeException(nameof(Distance), $"La distance doit être supérieur à {DISTANCE_VAL_MIN}");
 
                 _distance = value;
             }
@@ -212,7 +213,7 @@ namespace _420_14B_FX_A24_TP2.classes
         {
             get
             {
-                throw new NotImplementedException();
+                return _coureurs.Count;
             }
 
         }
@@ -254,26 +255,28 @@ namespace _420_14B_FX_A24_TP2.classes
             Province = province;
             TypeCourse = typeCourse;
             Distance = distance;
+
         }
-        ///// <summary>
-        ///// Méthode permettant de vérifier si une course est déjà existante dans la liste de courses
-        ///// </summary>
-        ///// <param name="course">Course à vérifier si existante</param>
-        ///// <returns>Si la course est existante dans la liste de course (true/false)</returns>
-        ///// <exception cref="ArgumentNullException">Excecption retournant une exception si nulle</exception>
-        //public bool Existe(Course course)
-        //{
-        //    if (course is null)
-        //        throw new ArgumentNullException(nameof(course), "Le Course ne peut être nul!");
+        /// <summary>
+        /// Méthode permettant de vérifier si une course est déjà existante dans la liste de courses
+        /// </summary>
+        /// <param name="course">Course à vérifier si existante</param>
+        /// <returns>Si la course est existante dans la liste de course (true/false)</returns>
+        /// <exception cref="ArgumentNullException">Excecption retournant une exception si nulle</exception>
+        public bool Existe(Coureur coureur)
+        {
+            if (coureur is null)
+                throw new ArgumentNullException(nameof(coureur), "Le coureur ne peut être nul!");
 
-        //    foreach (Course c in Courses)
-        //    {
-        //        if (c.Nom.ToLower().Trim() == course.Nom.ToLower().Trim() && c.Date == course.Date)
-        //            return true;
-        //    }
+            if (Coureurs.Contains(coureur))
+                return true;
 
-        //    return false;
-        //}
+            //if (c.Nom.ToLower().Trim() == course.Nom.ToLower().Trim() && c.Date == course.Date)
+            //    return true;
+
+
+            return false;
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -283,19 +286,15 @@ namespace _420_14B_FX_A24_TP2.classes
             if (coureur is null)
                 throw new ArgumentNullException(nameof(coureur), "Le coureur ne peut être nul!");
 
-            foreach (Coureur c in Coureurs)
-            {
+            if (Existe(coureur))
+                throw new InvalidOperationException("Impossible d'ajouter le coureur, car les informations du coureur existe  déjà dans la liste!");
 
-                if (c.Dossard == coureur.Dossard)
-                {
-                    throw new InvalidOperationException("Impossible d'ajouter le coureur, car le dossard existe déjà dans la liste!");
 
-                }
-                else if (c.Nom.ToLower().Trim() == coureur.Nom.ToLower().Trim() && c.Prenom.ToLower().Trim() == coureur.Prenom.ToLower().Trim())
-                {
-                    throw new InvalidOperationException("Impossible d'ajouter le coureur, car les informations du coureur existe déjà dans la liste!");
-                }
-            }
+            //else if (c.Nom.ToLower().Trim() == coureur.Nom.ToLower().Trim() && c.Prenom.ToLower().Trim() == coureur.Prenom.ToLower().Trim())
+            //{
+            //    throw new InvalidOperationException("Impossible d'ajouter le coureur, car les informations du coureur existe déjà dans la liste!");
+            //}
+
             Coureurs.Add(coureur);
         }
 
@@ -307,25 +306,37 @@ namespace _420_14B_FX_A24_TP2.classes
         {
             return $"{Nom,-37} {Ville,-27} {Province,-20} {Date}";
         }
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="course1"></param>
-        ///// <param name="course2"></param>
-        ///// <returns></returns>
-        //public static bool operator ==(Course course1, Course course2)
-        //{
-        //    if (Object.ReferenceEquals(course1, course2))
-        //        return true;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="course1"></param>
+        /// <param name="course2"></param>
+        /// <returns></returns>
+        public static bool operator ==(Course course1, Course course2)
+        {
+            if (object.ReferenceEquals(course1, course2))
+                return true;
 
-        //    if ((Object)course1 == null || (Object)course2 == null)
-        //        return false;
+            if ((object)course1 == null || (object)course2 == null)
+                return false;
 
-        //    //if (fractionA is null || fractionB is null)
-        //    //    return false;
+            if (course1.Nom.ToLower().Trim() == course2.Nom.ToLower().Trim() && course1.Date == course2.Date && course1.Ville == course2.Ville && course1.Province == course2.Province && course1.TypeCourse == course2.TypeCourse && course1.Distance == course2.Distance)
+            {
+                return true;
+            }
 
-        //    return course1 == course2;
-        //}
+            return false;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="course1"></param>
+        /// <param name="course2"></param>
+        /// <returns></returns>
+        public static bool operator !=(Course course1, Course course2)
+        {
+            return !(course1 == course2);
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -338,7 +349,11 @@ namespace _420_14B_FX_A24_TP2.classes
 
             return this == (Course)obj;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public int CompareTo(Course? other)
         {
             if (other is null)
