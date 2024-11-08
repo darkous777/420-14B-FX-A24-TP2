@@ -249,6 +249,10 @@ namespace _420_14B_FX_A24_TP2.classes
 
         }
 
+        public override string ToString()
+        {
+            return $"{Dossard},{Nom},{Prenom},{Categorie},{Ville},{Province},{Temps},{Abandon}";
+        }
 
 
         /// <summary>
