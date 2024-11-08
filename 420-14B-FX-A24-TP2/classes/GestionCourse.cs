@@ -158,12 +158,12 @@ namespace _420_14B_FX_A24_TP2.classes
         {
             if (string.IsNullOrWhiteSpace(cheminFichierCoureurs))
             {
-                throw new ArgumentException("Le chemin du fichier Coureur ne peut être nul ou vide, ni contenir uniquement des espaces.", nameof(cheminFichierCoureurs));
+                throw new ArgumentNullException(nameof(cheminFichierCoureurs), "Le chemin du fichier Coureur ne peut être nul ou vide, ni contenir uniquement des espaces.");
             }
 
             if (string.IsNullOrWhiteSpace(cheminFichierCourses))
             {
-                throw new ArgumentException("Le chemin du fichier Course ne peut être nul ou vide, ni contenir uniquement des espaces.", nameof(cheminFichierCourses));
+                throw new ArgumentNullException(nameof(cheminFichierCourses), "Le chemin du fichier Course ne peut être nul ou vide, ni contenir uniquement des espaces.");
             }
 
             #region
