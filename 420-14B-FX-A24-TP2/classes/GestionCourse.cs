@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _420_14B_FX_A24_TP2.enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <param name="cheminFichierCoureursCsv">Chemin CSV permettant d'acceder au informations des coureurs</param>
         public GestionCourse(string cheminFichierCoursesCsv, string cheminFichierCoureursCsv)
         {
+            Courses = new List<Course>();
             ChargerCourse(cheminFichierCoursesCsv, cheminFichierCoureursCsv);
         }
         /// <summary>
@@ -76,11 +78,9 @@ namespace _420_14B_FX_A24_TP2.classes
         {
             string[] vectLignesCourses = Utilitaire.ChargerDonnees(cheminFichierCourses);
             string[] champs;
-            Courses = new List<Course>();
+           
             Course course;
-            try
-            {
-
+      
 
                 for (int i = 1; i < vectLignesCourses.Length; i++)
                 {
@@ -93,10 +93,8 @@ namespace _420_14B_FX_A24_TP2.classes
                     Courses.Add(course);
                 }
                 Courses.Sort();
-            }
-            catch (Exception ex)
-            {
-            }
+            
+
 
 
 
@@ -110,7 +108,6 @@ namespace _420_14B_FX_A24_TP2.classes
         {
             string[] vectLignesCoureurs = Utilitaire.ChargerDonnees(cheminFichierCoureurs);
             string[] champs;
-            course.Coureurs = new List<Coureur>();
 
             for (int i = 1; i < vectLignesCoureurs.Length; i++)
             {
@@ -119,7 +116,7 @@ namespace _420_14B_FX_A24_TP2.classes
                     champs = vectLignesCoureurs[i].Split(';');
                     if (course.Id == Guid.Parse(champs[0]))
                     {
-                        course.Coureurs.Add(new Coureur((ushort)Convert.ToInt16(champs[1]), champs[2], champs[3], (enums.Categorie)Convert.ToUInt16(champs[6]), champs[4], (enums.Province)Convert.ToUInt16(champs[5]), TimeSpan.Parse(champs[7]), Boolean.Parse(champs[8])));
+                        course.Coureurs.Add(new Coureur((ushort)Convert.ToInt16(champs[1]), champs[2], champs[3], Enum.Parse<Categorie>(champs[6]), champs[4], Enum.Parse<Province>(champs[5]), TimeSpan.Parse(champs[7]), Boolean.Parse(champs[8])));
                     }
                 }
             }
