@@ -4,10 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_420_14B_FX_A24_TP2"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
         mc:Ignorable="d"
-        Title="FormCoureur" Height="350" Width="300">
-    <StackPanel Margin="10">
-        <TextBlock HorizontalAlignment="Center" FontWeight="Bold" FontSize="20">
+        Title="FormCoureur" Height="450" Width="400">
+    <StackPanel Margin="10" RenderTransformOrigin="0.948,0.556">
+        <TextBlock HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" Margin="0,20">
             Ajout d'un coureur
         </TextBlock>
 
@@ -45,7 +46,34 @@
                 <ComboBoxItem>Yukon</ComboBoxItem>
             </ComboBox>
         </StackPanel>
-        
+        <StackPanel Margin="5" Orientation="Horizontal">
+            <Label Width="80">Catégorie</Label>
+            <ComboBox Width="150" Height="20">
+                <ComboBoxItem>M2029</ComboBoxItem>
+                <ComboBoxItem>M3039</ComboBoxItem>
+                <ComboBoxItem>M4049</ComboBoxItem>
+                <ComboBoxItem>M5059</ComboBoxItem>
+                <ComboBoxItem>M6069</ComboBoxItem>
+                <ComboBoxItem>F2029</ComboBoxItem>
+                <ComboBoxItem>F3039</ComboBoxItem>
+                <ComboBoxItem>F4049</ComboBoxItem>
+                <ComboBoxItem>F5059</ComboBoxItem>
+                <ComboBoxItem>F6069</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Margin="5"  Orientation="Horizontal">
+            <Label Width="80">Temps</Label>
+            <xctk:TimeSpanUpDown Height="20" Width="110" Minimum="0"></xctk:TimeSpanUpDown>
+        </StackPanel>
 
+        <StackPanel Margin="5"  Orientation="Horizontal">
+            <Label Width="80"></Label>
+            <CheckBox>Abondon</CheckBox>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnAjouter" Width="100" Height="20"  Margin="0,20" Click="btnAjouterCoureur_Click" >Ajouter</Button >
+            <Button x:Name="btnAnnuler" Width="100" Height="20"   Margin="10,0,0,0"  Click="btnAnnuler_Click">Annuler</Button>
+        </StackPanel>
     </StackPanel>
 </Window>
