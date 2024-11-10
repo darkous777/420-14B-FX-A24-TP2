@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <Compile Remove="CoureurTests.cs" />
-    <Compile Remove="CourseTests.cs" />
+    <Compile Remove="GestionCourseTests.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -8,7 +8,7 @@ namespace _420_14B_FX_A24_TP2.classes
     /// <summary>
     /// Classe représentant un coureur
     /// </summary>
-    public class Coureur
+    public class Coureur : IComparable<Coureur>
     {
         public const ushort DOSSARD_VAL_MIN = 1;
         public const byte NOM_NB_CARC_MIN = 3;
@@ -298,26 +298,19 @@ namespace _420_14B_FX_A24_TP2.classes
 
             return this == (Coureur)obj;
         }
-    //    /// <summary>
-    //    /// 
-    //    /// </summary>
-    //    /// <param name="other"></param>
-    //    /// <returns></returns>
-    //    public int CompareTo(Coureur? other)
-    //    {
-    //        if (other is null)
-    //            return 1;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public int CompareTo(Coureur? other)
+        {
+            if (other is null)
+                return 1;
 
-    //        int reseltatComparaison = Dossard.CompareTo(other.Dossard);
-
-    //        if (reseltatComparaison != 0)
-    //            return reseltatComparaison * -1;
-
-    //        //Tri basé sur le nom
-    //        return String.Compare(Dossard., other.Dossard,
-    //            CultureInfo.InvariantCulture,
-    //            CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase);
-    //    }
+            //Tri basé sur le nom
+            return Temps.CompareTo(other.Temps);
+        }
 
 
     }
