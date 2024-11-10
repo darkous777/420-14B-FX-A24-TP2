@@ -86,7 +86,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// </summary>
         /// <value>Obtien ou modifie la valeur de l'attribut :  _nom.</value>
         /// <exception cref="System.ArgumentNullException">Lancée lorsque que le nom est nul ou n'a aucune valeur.</exception>
-        /// <exception cref="System.ArgumentException">Lancé lors que le nom a moins de NOM_NB_CAR_MIN caractères.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">Lancé lors que le nom a moins de NOM_NB_CAR_MIN caractères.</exception>
 
         public string Nom
         {
@@ -94,10 +94,14 @@ namespace _420_14B_FX_A24_TP2.classes
 
             set
             {
-                if (String.IsNullOrEmpty(value) && value.Trim().Length < NOM_NB_CAR_MIN)
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentNullException(nameof(Nom), $"Le nom ne peut être null ou vide.");
-                    throw new ArgumentException(nameof(Nom), $"Le nom doit contenir au moins {NOM_NB_CAR_MIN} caractères");
+                }
+                if (value.Trim().Length < NOM_NB_CAR_MIN)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(Nom), $"Le nom doit contenir au moins {NOM_NB_CAR_MIN} caractères");
+
                 }
 
                 _nom = value.Trim().ToUpper();
@@ -127,7 +131,7 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _ville; }
             set
             {
-                if (String.IsNullOrEmpty(value) && value.Trim().Length < VILLE_NB_CAR_MIN)
+                if (String.IsNullOrEmpty(value) || value.Trim().Length < VILLE_NB_CAR_MIN)
                 {
                     throw new ArgumentNullException(nameof(Ville), $"La ville ne peut être null ou vide.");
                     throw new ArgumentException(nameof(Ville), $"La ville doit contenir au moins {VILLE_NB_CAR_MIN} caractères.");

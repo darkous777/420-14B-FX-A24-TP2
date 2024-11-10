@@ -183,7 +183,7 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _province; }
             set
             {
-                if(!(Enum.IsDefined(typeof(Categorie), value)))
+                if(!(Enum.IsDefined(typeof(Province), value)))
                 {
                     throw new ArgumentOutOfRangeException(nameof(Province), $"Veuillez séléctionner une province existante");
                 }
