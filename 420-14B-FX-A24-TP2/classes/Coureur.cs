@@ -183,7 +183,7 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _province; }
             set
             {
-                if(!(Enum.IsDefined(typeof(Province), value)))
+                if (!(Enum.IsDefined(typeof(Province), value)))
                 {
                     throw new ArgumentOutOfRangeException(nameof(Province), $"Veuillez séléctionner une province existante");
                 }
@@ -308,24 +308,18 @@ namespace _420_14B_FX_A24_TP2.classes
             if (other is null)
                 return 1;
 
-            //int reseltatComparaison = Temps.CompareTo(other.Temps);
-
-
-            if (Temps == TimeSpan.Zero && other.Temps != TimeSpan.Zero)
-                return 1; 
-
-            if (Temps != TimeSpan.Zero && other.Temps == TimeSpan.Zero)
-                return -1;
-
             int tempsComparaison = Temps.CompareTo(other.Temps);
+
             if (tempsComparaison != 0)
+            {
+                if (Temps == TimeSpan.Zero && other.Temps != TimeSpan.Zero)
+                    return 1;
+
+                if (Temps != TimeSpan.Zero && other.Temps == TimeSpan.Zero)
+                    return -1;
+
                 return tempsComparaison;
-
-
-            //if (reseltatComparaison != 0 && (Temps == TimeSpan.Zero || other.Temps == TimeSpan.Zero))
-            //{
-            //    return reseltatComparaison * -1;
-            //}
+            }
 
             return other.Rang.CompareTo(Rang);
         }
