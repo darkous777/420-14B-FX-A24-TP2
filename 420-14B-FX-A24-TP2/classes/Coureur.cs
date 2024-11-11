@@ -95,11 +95,11 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _nom; }
             set
             {
-                if (string.IsNullOrEmpty(value) || value.Trim().Length < NOM_NB_CARC_MIN)
-                {
+                if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentNullException(nameof(Nom), $"Le nom ne peut pas être null ou vide");
+
+                if (value.Trim().Length < NOM_NB_CARC_MIN)
                     throw new ArgumentOutOfRangeException(nameof(Nom), $"Le nom doit contenir au moins {NOM_NB_CARC_MIN} caractères ");
-                }
 
                 _nom = value.Trim();
             }
@@ -119,14 +119,11 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _prenom; }
             set
             {
-                if (string.IsNullOrEmpty(value) || value.Trim().Length < PRENOM_NB_CARC_MIN)
-                {
+                if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentNullException(nameof(Prenom), $"Le prénom ne peut pas être null ou vide");
-
+                
+                if (value.Trim().Length < PRENOM_NB_CARC_MIN)
                     throw new ArgumentOutOfRangeException(nameof(Prenom), $"Le prénom doit contenir au moins {PRENOM_NB_CARC_MIN} caractères ");
-
-                }
-
 
                 _prenom = value.Trim();
             }
@@ -164,11 +161,13 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _ville; }
             set
             {
-                if (string.IsNullOrEmpty(value) || value.Trim().Length < VILLE_NB_CARC_MIN)
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentNullException(nameof(Ville), $"La ville ne peut pas être null ou vide");
-                    throw new ArgumentOutOfRangeException(nameof(Nom), $"Le nom de la ville doit contenir au moins {VILLE_NB_CARC_MIN} caractères ");
                 }
+                if (value.Trim().Length < VILLE_NB_CARC_MIN)
+                    throw new ArgumentOutOfRangeException(nameof(Nom), $"Le nom de la ville doit contenir au moins {VILLE_NB_CARC_MIN} caractères ");
+
                 _ville = value.Trim();
             }
         }
