@@ -16,7 +16,7 @@ namespace _420_14B_FX_A24_TP2.classes
         public const byte NOM_NB_CAR_MIN = 3;
         public const byte VILLE_NB_CAR_MIN = 4;
         public const byte DISTANCE_VAL_MIN = 1;
-
+        public const byte DOSSARD_VAL_MIN = 1;
 
         /// <summary>
         /// Identifiant unique de la course
@@ -73,10 +73,11 @@ namespace _420_14B_FX_A24_TP2.classes
             set
             {
 
-                if (value != Guid.Empty)
+                if (value == Guid.Empty)
                 {
-                    _id = value;
+                    throw new ArgumentException("Le id ne peut etre null!");
                 }
+                _id = value;
             }
         }
 
@@ -95,14 +96,12 @@ namespace _420_14B_FX_A24_TP2.classes
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
-                {
                     throw new ArgumentNullException(nameof(Nom), $"Le nom ne peut être null ou vide.");
-                }
+
                 if (value.Trim().Length < NOM_NB_CAR_MIN)
-                {
                     throw new ArgumentOutOfRangeException(nameof(Nom), $"Le nom doit contenir au moins {NOM_NB_CAR_MIN} caractères");
 
-                }
+
 
                 _nom = value.Trim().ToUpper();
             }
@@ -131,11 +130,11 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _ville; }
             set
             {
-                if (String.IsNullOrEmpty(value) || value.Trim().Length < VILLE_NB_CAR_MIN)
-                {
+                if (String.IsNullOrWhiteSpace(value))
                     throw new ArgumentNullException(nameof(Ville), $"La ville ne peut être null ou vide.");
-                    throw new ArgumentException(nameof(Ville), $"La ville doit contenir au moins {VILLE_NB_CAR_MIN} caractères.");
-                }
+
+                if (value.Trim().Length < VILLE_NB_CAR_MIN)
+                    throw new ArgumentOutOfRangeException(nameof(Ville), $"La ville doit contenir au moins {VILLE_NB_CAR_MIN} caractères.");
 
                 _ville = value.Trim();
             }
@@ -292,6 +291,9 @@ namespace _420_14B_FX_A24_TP2.classes
             if (Existe(coureur))
                 throw new InvalidOperationException("Impossible d'ajouter le coureur, car les informations du coureur existe  déjà dans la liste!");
 
+            if (ObtenirCoureurParNoDossard(coureur.Dossard) is not null)
+                throw new InvalidOperationException("Impossible d'ajouter le coureur, car le dossard du coureur existe  déjà dans la liste!");
+
             Coureurs.Add(coureur);
             Coureurs.Sort();
         }
@@ -302,7 +304,16 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <returns></returns>
         public Coureur ObtenirCoureurParNoDossard(ushort noDossard)
         {
-            return Coureurs[0];
+            if (noDossard < DOSSARD_VAL_MIN)
+                throw new ArgumentOutOfRangeException(nameof(noDossard), "Le numero de dossard doit etre superieur a 1!");
+            foreach (Coureur coureur in Coureurs)
+            {
+                if (coureur.Dossard == noDossard)
+                    return coureur;
+            }
+
+
+            return null;
         }
         /// <summary>
         /// 
