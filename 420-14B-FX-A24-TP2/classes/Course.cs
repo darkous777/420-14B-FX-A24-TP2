@@ -321,7 +321,14 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <param name="coureur"></param>
         public void SupprimerCoureur(Coureur coureur)
         {
+            if (coureur is null)
+                throw new ArgumentNullException(nameof(coureur), "Le coureur ne peut être nul!");
 
+            if (!Existe(coureur))
+                throw new InvalidOperationException("Impossible de supprimer le coureur, car les informations du coureur n'existe pas dans la liste!");
+
+            Coureurs.Remove(coureur);
+            Coureurs.Sort();
         }
         /// <summary>
         /// 

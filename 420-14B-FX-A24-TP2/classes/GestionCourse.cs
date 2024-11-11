@@ -43,7 +43,7 @@ namespace _420_14B_FX_A24_TP2.classes
             if (course is null)
                 throw new ArgumentNullException(nameof(course), "Le Course ne peut être nul!");
 
-            if(Courses.Contains(course))
+            if (Courses.Contains(course))
                 return true;
 
             return false;
@@ -133,16 +133,10 @@ namespace _420_14B_FX_A24_TP2.classes
             if (!Existe(course))
                 throw new InvalidOperationException("Impossible de supprimer la course, car elle n'existe pas dans la liste!");
 
-            foreach (Course c in Courses)
-            {
-                if (c.Nom.ToLower().Trim() == course.Nom.ToLower().Trim() && c.Date == course.Date)
-                {
-                    Courses.Remove(course);
-                    return true;
-                }
-            }
+            Courses.Remove(course);
+            Courses.Sort();
 
-            return false;
+            return true;
 
         }
         /// <summary>
