@@ -39,7 +39,8 @@ namespace _420_14B_FX_A24_TP2
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
-          
+            FormCourse formCourse = new FormCourse();
+            formCourse.ShowDialog();
         }
 
         private void btnSupprimer_Click(object sender, RoutedEventArgs e)

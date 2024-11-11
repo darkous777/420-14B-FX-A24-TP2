@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using _420_14B_FX_A24_TP2.classes;
 
 namespace _420_14B_FX_A24_TP2
 {
@@ -19,9 +20,12 @@ namespace _420_14B_FX_A24_TP2
     /// </summary>
     public partial class FormCourse : Window
     {
+      
+        
         public FormCourse()
         {
             InitializeComponent();
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -41,7 +45,8 @@ namespace _420_14B_FX_A24_TP2
 
         private void btnAjoutCoureurs_Click(object sender, RoutedEventArgs e)
         {
-
+            FormCoureur formCoureur = new FormCoureur();
+            formCoureur.ShowDialog();
         }
 
         private void btnModifierCoureurs_Click(object sender, RoutedEventArgs e)
@@ -50,6 +55,11 @@ namespace _420_14B_FX_A24_TP2
         }
 
         private void btnSupprimerCoureurs_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void lstCoureurs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

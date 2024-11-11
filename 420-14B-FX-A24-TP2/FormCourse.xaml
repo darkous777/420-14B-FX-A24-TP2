@@ -74,7 +74,7 @@
                                     <TextBlock  Text="RANG" FontWeight="Bold"  HorizontalAlignment="Left"/>
                                 </StackPanel>
                                 <StackPanel>
-                                    <ListBox x:Name="lstCoureurs"   Width="740" Height="200" VerticalAlignment="top" Margin="0,0,10,0" HorizontalAlignment="Left" FontFamily="Courier New"></ListBox>
+                                    <ListBox x:Name="lstCoureurs"   Width="740" Height="200" VerticalAlignment="top" Margin="0,0,10,0" HorizontalAlignment="Left" FontFamily="Courier New" SelectionChanged="lstCoureurs_SelectionChanged"></ListBox>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,10">
