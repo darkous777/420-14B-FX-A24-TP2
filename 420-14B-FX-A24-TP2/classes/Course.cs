@@ -229,7 +229,7 @@ namespace _420_14B_FX_A24_TP2.classes
         {
             get
             {
-                throw new NotImplementedException();
+                return CalculerTempsCourseMoyen();
             }
 
         }
@@ -336,7 +336,21 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <returns></returns>
         private TimeSpan CalculerTempsCourseMoyen()
         {
-            return CalculerTempsCourseMoyen();
+            double tempsTotalMs = 0;
+            double compteur = 0;
+
+            foreach (Coureur coureur in Coureurs)
+            {
+                if (!coureur.Abandon && coureur.Temps != TimeSpan.Zero)
+                {
+                    tempsTotalMs += coureur.Temps.TotalMilliseconds;
+                    compteur++;
+                }
+            }
+
+            TimeSpan tempsMoyen = TimeSpan.FromMilliseconds(tempsTotalMs / compteur);
+
+            return tempsMoyen;
         }
         /// <summary>
         /// 
