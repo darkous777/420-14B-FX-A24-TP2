@@ -310,16 +310,12 @@ namespace _420_14B_FX_A24_TP2.classes
 
             int tempsComparaison = Temps.CompareTo(other.Temps);
 
-            if (tempsComparaison != 0)
-            {
-                if (Temps == TimeSpan.Zero && other.Temps != TimeSpan.Zero)
-                    return 1;
-
-                if (Temps != TimeSpan.Zero && other.Temps == TimeSpan.Zero)
-                    return -1;
-
+            if (Temps != TimeSpan.Zero && other.Temps != TimeSpan.Zero)
                 return tempsComparaison;
-            }
+
+            if (tempsComparaison != 0)
+                return tempsComparaison * -1;
+
 
             return other.Rang.CompareTo(Rang);
         }
