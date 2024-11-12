@@ -90,7 +90,7 @@ namespace _420_14B_FX_A24_TP2
 
                     _gestionCourse.SupprimerCourse(courseSelect);
 
-                    // _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSE_CSV, CHEMIN_FICHIER_COUREURS_CSV);
+                    // _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSE_CSV, CHEMIN_FICHIER_COUREURS_CSV); 
 
                     AfficherListeCourses();
 

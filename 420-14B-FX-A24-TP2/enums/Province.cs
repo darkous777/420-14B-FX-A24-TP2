@@ -24,7 +24,7 @@ namespace _420_14B_FX_A24_TP2.enums
         Saskatchewan,
         [Description("Terre-Neuve-et-Labrador")]
         TerreNeuveLabrador,
-        [Description(" Territoires du Nord-Oues")]
+        [Description("Territoires du Nord-Ouest")]
         TerritoiresNordOuest,
         Yukon
     }

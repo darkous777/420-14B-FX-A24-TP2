@@ -29,15 +29,25 @@
                                 <TextBox x:Name="txtVille" Width="350"></TextBox>
                                 <StackPanel Orientation="Horizontal" Margin="15,0">
                                     <Label Width="150">Temps de course moyen</Label>
-                                    <TextBox x:Name="txtTempsCourseMoyen" Width="90" IsEnabled="True"></TextBox>
+                                    <TextBox x:Name="txtTempsCourseMoyen" Width="90" IsEnabled="False"></TextBox>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,10">
                                 <Label Width="80">Province</Label>
-                                <ComboBox Width="150" Height="30" VerticalAlignment="Top">
-                                    <ComboBoxItem Content="Option 1"/>
-                                    <ComboBoxItem Content="Option 2"/>
-                                    <ComboBoxItem Content="Option 3"/>
+                                <ComboBox x:Name="lstProvince" Width="150" Height="30" VerticalAlignment="Top">
+                                    <ComboBoxItem x:Name="Alberta" Content="Alberta"></ComboBoxItem>
+                                    <ComboBoxItem x:Name="ColombieBritannique" Content="Colombie-Britannique"></ComboBoxItem>
+                                    <ComboBoxItem x:Name="IlePrinceEdouard" Content="Île-du-Prince-Édouard"></ComboBoxItem>
+                                    <ComboBoxItem x:Name="Manitoba" Content="Manitoba"></ComboBoxItem>
+                                    <ComboBoxItem x:Name="NouveauBrunswick" Content="Nouveau-Brunswick"></ComboBoxItem>
+                                    <ComboBoxItem x:Name="NouvelleEcosse" Content="Nouvelle-Écosse"></ComboBoxItem>
+                                    <ComboBoxItem x:Name="Nunavut" Content="Nunavut"></ComboBoxItem>
+                                    <ComboBoxItem x:Name="Ontario" Content="Ontario"></ComboBoxItem>
+                                    <ComboBoxItem x:Name="Quebec" Content="Québec"></ComboBoxItem>
+                                    <ComboBoxItem x:Name="Saskatchewan" Content="Saskatchewan"></ComboBoxItem>
+                                    <ComboBoxItem x:Name="TerreNeuveLabrador" Content="Terre-Neuve-et-Labrador"></ComboBoxItem>
+                                    <ComboBoxItem x:Name="TerritoiresNordOuest" Content="Territoires du Nord-Ouest"></ComboBoxItem>
+                                    <ComboBoxItem x:Name="Yukon" Content="Yukon"></ComboBoxItem>
                                 </ComboBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,10">
@@ -47,9 +57,9 @@
                             <StackPanel Orientation="Horizontal" Margin="0,10">
                                 <Label Width="80">Type</Label>
                                 <ComboBox Width="150" Height="30" VerticalAlignment="Top">
-                                    <ComboBoxItem Content="Option 1"/>
-                                    <ComboBoxItem Content="Option 2"/>
-                                    <ComboBoxItem Content="Option 3"/>
+                                    <ComboBoxItem x:Name="Sentier" Content="Sentier"></ComboBoxItem>
+                                    <ComboBoxItem x:Name="Route" Content="Route"></ComboBoxItem>
+                                    <ComboBoxItem x:Name="Piste" Content="Piste"></ComboBoxItem>
                                 </ComboBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" >
@@ -95,9 +105,9 @@
         </TabControl>
         <StackPanel Margin="10">
             <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
-                <Button x:Name="btnAjoutCourse2"  Content="Ajouter"  Width="120" Height="25" Margin="10,0,0,0" Click="btnClick_Click"/>
+                <Button x:Name="btnAjoutCourse"  Content="Ajouter"  Width="120" Height="25" Margin="10,0,0,0" Click="btnClick_Click"/>
 
-                <Button x:Name="btnAnnulerCourse2"   Content="Annuler"  Width="120" Height="25" Margin="10,0,0,0" Click="btnAnnuler_Click"/>
+                <Button x:Name="btnAnnulerCourse"   Content="Annuler"  Width="120" Height="25" Margin="10,0,0,0" Click="btnAnnuler_Click"/>
             </StackPanel>
         </StackPanel>
     </StackPanel>

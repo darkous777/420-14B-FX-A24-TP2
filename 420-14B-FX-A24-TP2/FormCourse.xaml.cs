@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +41,9 @@ namespace _420_14B_FX_A24_TP2
             }
             private set
             {
+                if (!(Enum.IsDefined(typeof(EtatFormulaire), value)))
+                    throw new ArgumentOutOfRangeException(nameof(EtatFormulaire), $"La valeur {value} n'est pas existante dans les choix.");
+
                 _etat = value;
             }
 
@@ -47,6 +51,7 @@ namespace _420_14B_FX_A24_TP2
 
         public FormCourse(EtatFormulaire etat = EtatFormulaire.Ajouter, Course course = null) 
         { 
+            Etat = etat;
             Course = course;
         }
 
@@ -59,7 +64,21 @@ namespace _420_14B_FX_A24_TP2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            prvTitle.Text = $"{Etat} une course";
+            btnAjoutCourse.Content = Etat;
 
+            if (Etat != EtatFormulaire.Ajouter && Course is not null)
+            {
+                txtNom.Text = Course.Nom;
+                txtVille.Text = Course.Ville;
+                lstProvince.Text = Course.Province.GetDescription();
+                txtTempsCourseMoyen.Text = Course.TempCourseMoyen.ToString();
+
+                if (Etat == EtatFormulaire.Supprimer)
+                {
+
+                }
+            }
         }
 
         private void btnClick_Click(object sender, RoutedEventArgs e)
