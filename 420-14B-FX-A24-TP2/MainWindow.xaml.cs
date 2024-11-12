@@ -47,7 +47,7 @@ namespace _420_14B_FX_A24_TP2
 
                 AfficherListeCourses();
 
-                MessageBox.Show("La course a bien ete ajouter!");
+                MessageBox.Show("La course a bien été ajouter!");
             }
         }
 
@@ -63,13 +63,13 @@ namespace _420_14B_FX_A24_TP2
                 {
                     AfficherListeCourses();
 
-                    MessageBox.Show("La course a bien ete modifier!");
+                    MessageBox.Show("La course a bien été modifier!");
 
                 }
             }
             else
             {
-                MessageBox.Show("Vous devez selectionner une course dans la liste!");
+                MessageBox.Show("Vous devez sélectionner une course dans la liste!");
             }
         }
 
@@ -82,19 +82,19 @@ namespace _420_14B_FX_A24_TP2
 
                 FormCourse formCourse = new FormCourse(EtatFormulaire.Supprimer, courseSelect);
 
-                if (formCourse.ShowDialog() == true)
+                if (formCourse.ShowDialog() is true)
                 {
 
-                    _gestionCourse.Courses.Remove(courseSelect);
+                    _gestionCourse.SupprimerCourse(courseSelect);
 
-                    lstCourses.Items.Remove(courseSelect);
+                    AfficherListeCourses();
 
-                    MessageBox.Show("La course a bien été supprimée");
+                    MessageBox.Show("La course a bien été supprimér!");
                 }
             }
             else
             {
-                MessageBox.Show("Vous devez sélectionner une course");
+                MessageBox.Show("Vous devez sélectionner une course dans la liste!");
             }
         }
 
