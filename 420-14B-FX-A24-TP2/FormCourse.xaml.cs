@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using _420_14B_FX_A24_TP2.classes;
 using _420_14B_FX_A24_TP2.enums;
+using Xceed.Wpf.Toolkit;
 
 namespace _420_14B_FX_A24_TP2
 {
@@ -39,7 +40,7 @@ namespace _420_14B_FX_A24_TP2
             {
                 return _etat;
             }
-            private set
+            set
             {
                 if (!(Enum.IsDefined(typeof(EtatFormulaire), value)))
                     throw new ArgumentOutOfRangeException(nameof(EtatFormulaire), $"La valeur {value} n'est pas existante dans les choix.");
@@ -53,13 +54,7 @@ namespace _420_14B_FX_A24_TP2
         { 
             Etat = etat;
             Course = course;
-        }
-
-
-        public FormCourse()
-        {
             InitializeComponent();
-
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -72,11 +67,21 @@ namespace _420_14B_FX_A24_TP2
                 txtNom.Text = Course.Nom;
                 txtVille.Text = Course.Ville;
                 lstProvince.Text = Course.Province.GetDescription();
-                txtTempsCourseMoyen.Text = Course.TempCourseMoyen.ToString();
+                dtpDateDepart.SelectedDate = Course.Date.ToDateTime(TimeOnly.MinValue);
+                lstType.Text = Course.TypeCourse.GetDescription();
+                txtDistance.Text = Course.Distance.ToString();
+                txtNbParticipants.Text = Course.NbParticipants.ToString();
+                string format = Course.TempCourseMoyen.ToString(@"hh\:mm\:ss");
+                txtTempsCourseMoyen.Text = format;
 
                 if (Etat == EtatFormulaire.Supprimer)
                 {
-
+                    txtNom.IsEnabled = false;
+                    txtVille.IsEnabled = false;
+                    lstProvince.IsEnabled = false;
+                    dtpDateDepart.IsEnabled = false;
+                    lstType.IsEnabled = false;
+                    txtDistance.IsEnabled = false;
                 }
             }
         }
@@ -88,7 +93,7 @@ namespace _420_14B_FX_A24_TP2
 
         private void btnAnnuler_Click(object sender, RoutedEventArgs e)
         {
-
+            DialogResult = false;
         }
 
         private void btnAjoutCoureurs_Click(object sender, RoutedEventArgs e)

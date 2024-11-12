@@ -12,7 +12,7 @@ namespace _420_14B_FX_A24_TP2
     {
         public const string CHEMIN_FICHIER_COUREURS_CSV = "C:\\data-420-14B-FX\\TP2\\coureurs.csv";
         public const string CHEMIN_FICHIER_COURSE_CSV = "C:\\data-420-14B-FX\\TP2\\courses.csv";
-        GestionCourse _gestionCourse;
+        public GestionCourse _gestionCourse;
 
        
 
@@ -54,11 +54,9 @@ namespace _420_14B_FX_A24_TP2
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
-            if (lstCourses.SelectedItems != null)
+            if (lstCourses.SelectedItem != null)
             {
-                Course courseSelect = lstCourses.SelectedItem as Course;
-
-                FormCourse formCourse = new FormCourse(EtatFormulaire.Modifier, courseSelect);
+                FormCourse formCourse = new FormCourse(EtatFormulaire.Modifier, lstCourses.SelectedItem as Course);
 
                 if(formCourse.ShowDialog() is true)
                 {
