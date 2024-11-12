@@ -33,6 +33,7 @@ namespace _420_14B_FX_A24_TP2
         private void AfficherListeCourses()
         {
             lstCourses.Items.Clear();
+            _gestionCourse.Courses.Sort();
             foreach (Course c in _gestionCourse.Courses)
                 lstCourses.Items.Add(c);
         }

@@ -71,8 +71,7 @@ namespace _420_14B_FX_A24_TP2
                 lstType.Text = Course.TypeCourse.GetDescription();
                 txtDistance.Text = Course.Distance.ToString();
                 txtNbParticipants.Text = Course.NbParticipants.ToString();
-                string format = Course.TempCourseMoyen.ToString(@"hh\:mm\:ss");
-                txtTempsCourseMoyen.Text = format;
+                txtTempsCourseMoyen.Text = Course.TempCourseMoyen.ToString(@"hh\:mm\:ss");
 
                 if (Etat == EtatFormulaire.Supprimer)
                 {

@@ -26,7 +26,7 @@ namespace _420_14B_FX_A24_TP2
 
         private void btnAjouterCoureur_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void btnAnnuler_Click(object sender, RoutedEventArgs e)

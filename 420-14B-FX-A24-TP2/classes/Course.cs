@@ -1,5 +1,6 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
+using System;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Controls;
@@ -357,6 +358,10 @@ namespace _420_14B_FX_A24_TP2.classes
         public void TrierCoureurs()
         {
             Coureurs.Sort();
+            foreach (Coureur c in Coureurs)
+            {
+                c.Rang.Equals((ushort)Coureurs.IndexOf(c));
+            }
         }
         /// <summary>
         /// Format d'affichage sur WPF
