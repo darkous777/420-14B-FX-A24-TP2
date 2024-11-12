@@ -95,11 +95,11 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _nom; }
             set
             {
-                if (string.IsNullOrEmpty(value) || value.Trim().Length < NOM_NB_CARC_MIN)
-                {
+                if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentNullException(nameof(Nom), $"Le nom ne peut pas être null ou vide");
+
+                if (value.Trim().Length < NOM_NB_CARC_MIN)
                     throw new ArgumentOutOfRangeException(nameof(Nom), $"Le nom doit contenir au moins {NOM_NB_CARC_MIN} caractères ");
-                }
 
                 _nom = value.Trim();
             }
@@ -119,14 +119,11 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _prenom; }
             set
             {
-                if (string.IsNullOrEmpty(value) || value.Trim().Length < PRENOM_NB_CARC_MIN)
-                {
+                if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentNullException(nameof(Prenom), $"Le prénom ne peut pas être null ou vide");
 
+                if (value.Trim().Length < PRENOM_NB_CARC_MIN)
                     throw new ArgumentOutOfRangeException(nameof(Prenom), $"Le prénom doit contenir au moins {PRENOM_NB_CARC_MIN} caractères ");
-
-                }
-
 
                 _prenom = value.Trim();
             }
@@ -164,11 +161,13 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _ville; }
             set
             {
-                if (string.IsNullOrEmpty(value) || value.Trim().Length < VILLE_NB_CARC_MIN)
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentNullException(nameof(Ville), $"La ville ne peut pas être null ou vide");
-                    throw new ArgumentOutOfRangeException(nameof(Nom), $"Le nom de la ville doit contenir au moins {VILLE_NB_CARC_MIN} caractères ");
                 }
+                if (value.Trim().Length < VILLE_NB_CARC_MIN)
+                    throw new ArgumentOutOfRangeException(nameof(Nom), $"Le nom de la ville doit contenir au moins {VILLE_NB_CARC_MIN} caractères ");
+
                 _ville = value.Trim();
             }
         }
@@ -183,7 +182,7 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _province; }
             set
             {
-                if(!(Enum.IsDefined(typeof(Province), value)))
+                if (!(Enum.IsDefined(typeof(Province), value)))
                 {
                     throw new ArgumentOutOfRangeException(nameof(Province), $"Veuillez séléctionner une province existante");
                 }
@@ -235,7 +234,6 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <param name="province">Province du coureur</param>
         /// <param name="temps">Temps de course du coureur</param>
         /// <param name="abandon">Indicateur d'abandon de la course. Faux par défaut</param>
-
         public Coureur(ushort dossard, string nom, string prenom, Categorie categorie, string ville, Province province, TimeSpan temps, bool abandon = false)
         {
             Dossard = dossard;
@@ -248,7 +246,10 @@ namespace _420_14B_FX_A24_TP2.classes
             Abandon = abandon;
 
         }
-
+        /// <summary>
+        /// Format d'affichage sur WPF
+        /// </summary>
+        /// <returns>L'affichage attendu de chaque coureur</returns>
         public override string ToString()
         {
             return $"{Dossard},{Nom},{Prenom},{Categorie},{Ville},{Province},{Temps},{Abandon}";
@@ -256,11 +257,11 @@ namespace _420_14B_FX_A24_TP2.classes
 
 
         /// <summary>
-        /// 
+        /// Détermine si les 2 courses sont equivalentes(en valeur)
         /// </summary>
-        /// <param name="coureur1"></param>
-        /// <param name="coureur2"></param>
-        /// <returns></returns>
+        /// <param name="coureur1">Le coureur cote gauche du egal</param>
+        /// <param name="coureur2">Le coureur cote droit du egal</param>
+        /// <returns>true les 2 deux coureurs on les mêmes valeurs sinon false</returns>
         public static bool operator ==(Coureur coureur1, Coureur coureur2)
         {
             if (object.ReferenceEquals(coureur1, coureur2))
@@ -269,7 +270,7 @@ namespace _420_14B_FX_A24_TP2.classes
             if ((object)coureur1 == null || (object)coureur2 == null)
                 return false;
 
-            if (coureur1.Nom.ToLower().Trim() == coureur2.Nom.ToLower().Trim() && coureur1.Prenom == coureur2.Prenom && coureur1.Ville == coureur2.Ville && coureur1.Province == coureur2.Province && coureur1.Categorie == coureur2.Categorie && coureur1.Rang == coureur2.Rang && coureur1.Temps == coureur2.Temps && coureur1.Abandon == coureur2.Abandon)
+            if (coureur1.Nom == coureur2.Nom && coureur1.Prenom == coureur2.Prenom && coureur1.Ville == coureur2.Ville && coureur1.Province == coureur2.Province)
             {
                 return true;
             }
@@ -277,20 +278,20 @@ namespace _420_14B_FX_A24_TP2.classes
             return false;
         }
         /// <summary>
-        /// 
+        /// Détermine si les 2 courses sont differentes
         /// </summary>
-        /// <param name="coureur1"></param>
-        /// <param name="coureur2"></param>
-        /// <returns></returns>
+        /// <param name="coureur1">Le coureur cote gauche du !=</param>
+        /// <param name="coureur2">Le coureur cote droit du !=</param>
+        /// <returns>true les 2 deux coureurs n'on pas les mêmes valeurs sinon false</returns>
         public static bool operator !=(Coureur coureur1, Coureur coureur2)
         {
             return !(coureur1 == coureur2);
         }
         /// <summary>
-        /// 
+        /// Détermine si les 2 object sont equivalentes(en pointeur "position")
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">l'object qu'on verifie</param>
+        /// <returns>true les 2 deux object on la même position sinon false</returns>
         public override bool Equals(object? obj)
         {
             if (obj is null || obj is not Coureur)
@@ -299,41 +300,26 @@ namespace _420_14B_FX_A24_TP2.classes
             return this == (Coureur)obj;
         }
         /// <summary>
-        /// 
+        /// Interface de comparaison pour les objets en fonction du temps de course et du rang.
         /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
+        /// <param name="other">Autre coureur à comparer avec l'instance actuelle.</param>
+        /// <returns>
+        /// Retourne une valeur : 0, 1, -1 dependant du CompareTo.
+        /// </returns>
         public int CompareTo(Coureur? other)
         {
             if (other is null)
                 return 1;
 
-            //int reseltatComparaison = Temps.CompareTo(other.Temps);
-
-
-
-
-            //if (Temps == TimeSpan.Zero && other.Temps != TimeSpan.Zero)
-            //    return 1; 
-
-            //if (Temps != TimeSpan.Zero && other.Temps == TimeSpan.Zero)
-            //    return -1;
-
-
-
             int tempsComparaison = Temps.CompareTo(other.Temps);
-            if (tempsComparaison != 0 && (Temps != TimeSpan.Zero || other.Temps != TimeSpan.Zero))
-                return tempsComparaison *-1;
 
-            if (tempsComparaison == 0)
+            if (Temps != TimeSpan.Zero && other.Temps != TimeSpan.Zero)
                 return tempsComparaison;
 
-            #region
-            //if (reseltatComparaison != 0 && (Temps == TimeSpan.Zero || other.Temps == TimeSpan.Zero))
-            //{
-            //    return reseltatComparaison * -1;
-            //}
-            #endregion
+            if (tempsComparaison != 0)
+                return tempsComparaison * -1;
+
+
             return other.Rang.CompareTo(Rang);
         }
 

@@ -274,14 +274,14 @@ namespace _420_14B_FX_A24_TP2.classes
             if (Coureurs.Contains(coureur))
                 return true;
 
-
-
             return false;
         }
         /// <summary>
-        /// 
+        /// Ajoute un coureur à la liste des participants après vérification de son unicité.
         /// </summary>
-        /// <param name="coureur"></param>
+        /// <param name="coureur">Le coureur à ajouter.</param>
+        /// <exception cref="ArgumentNullException">Lancée si le coureur est null.</exception>
+        /// <exception cref="InvalidOperationException">Lancée si le coureur ou son numéro de dossard existe déjà dans la liste.</exception>
         public void AjouterCoureur(Coureur coureur)
         {
             if (coureur is null)
@@ -297,10 +297,11 @@ namespace _420_14B_FX_A24_TP2.classes
             TrierCoureurs();
         }
         /// <summary>
-        /// 
+        /// Recherche et retourne un coureur en fonction de son numéro de dossard.
         /// </summary>
-        /// <param name="noDossard"></param>
-        /// <returns></returns>
+        /// <param name="noDossard">Numéro de dossard du coureur recherché.</param>
+        /// <returns>Le coureur correspondant, ou <c>null</c> s'il n'est pas trouvé.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Lancée si le numéro de dossard est inférieur à la valeur minimale autorisée.</exception>
         public Coureur ObtenirCoureurParNoDossard(ushort noDossard)
         {
             if (noDossard < DOSSARD_VAL_MIN)
@@ -360,7 +361,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <summary>
         /// Format d'affichage sur WPF
         /// </summary>
-        /// <returns>L'affichage attendu de chaque coureur</returns>
+        /// <returns>L'affichage attendu de chaque course</returns>
         public override string ToString()
         {
             return $"{Nom,-37} {Ville,-27} {Province,-20} {Date}";
