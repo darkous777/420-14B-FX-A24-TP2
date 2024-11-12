@@ -45,6 +45,7 @@ namespace _420_14B_FX_A24_TP2
             {
                 _gestionCourse.AjouterCourse(formCourse.Course);
 
+               // _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSE_CSV, CHEMIN_FICHIER_COUREURS_CSV);
                 AfficherListeCourses();
 
                 MessageBox.Show("La course a bien été ajouter!");
@@ -61,6 +62,8 @@ namespace _420_14B_FX_A24_TP2
 
                 if(formCourse.ShowDialog() is true)
                 {
+                    // _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSE_CSV, CHEMIN_FICHIER_COUREURS_CSV);
+
                     AfficherListeCourses();
 
                     MessageBox.Show("La course a bien été modifier!");
@@ -86,6 +89,8 @@ namespace _420_14B_FX_A24_TP2
                 {
 
                     _gestionCourse.SupprimerCourse(courseSelect);
+
+                    // _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSE_CSV, CHEMIN_FICHIER_COUREURS_CSV);
 
                     AfficherListeCourses();
 
