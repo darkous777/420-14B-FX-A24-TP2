@@ -297,9 +297,7 @@ namespace _420_14B_FX_A24_TP2.classes
             if (obj is null || obj is not Coureur)
                 return false;
 
-            Coureur other = obj as Coureur;
-
-            return this.Prenom == other.Prenom && this.Nom == other.Nom && this.Ville == other.Ville && this.Province == other.Province;
+            return this == (Coureur)obj;
         }
         /// <summary>
         /// Interface de comparaison pour les objets en fonction du temps de course et du rang.
