@@ -9,7 +9,7 @@
         Title="FormCourse" Height="450" Width="800" Loaded="Window_Loaded">
 
     <StackPanel>
-        <TextBlock HorizontalAlignment="Center" Margin="10" FontWeight="Black" x:Name="prvTitle" FontSize="20">Modifier une course</TextBlock>
+        <TextBlock HorizontalAlignment="Center" Margin="10" FontWeight="Black" x:Name="prvTitle" FontSize="20">Ajouter une course</TextBlock>
 
         <TabControl Margin="10">
             <TabItem Header="Information sur la course" HorizontalAlignment="Right" Margin="0,-2,-2,0" Width="148">

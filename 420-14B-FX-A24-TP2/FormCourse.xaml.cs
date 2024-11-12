@@ -48,7 +48,6 @@ namespace _420_14B_FX_A24_TP2
         public FormCourse(EtatFormulaire etat = EtatFormulaire.Ajouter, Course course = null) 
         { 
             Course = course;
-            InitializeComponent();
         }
 
 
