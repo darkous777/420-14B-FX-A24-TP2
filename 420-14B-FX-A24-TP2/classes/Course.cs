@@ -274,8 +274,7 @@ namespace _420_14B_FX_A24_TP2.classes
             if (Coureurs.Contains(coureur))
                 return true;
 
-            //if (c.Nom.ToLower().Trim() == course.Nom.ToLower().Trim() && c.Date == course.Date)
-            //    return true;
+
 
             return false;
         }
@@ -295,7 +294,7 @@ namespace _420_14B_FX_A24_TP2.classes
                 throw new InvalidOperationException("Impossible d'ajouter le coureur, car le dossard du coureur existe  déjà dans la liste!");
 
             Coureurs.Add(coureur);
-            Coureurs.Sort();
+            TrierCoureurs();
         }
         /// <summary>
         /// 
@@ -328,7 +327,6 @@ namespace _420_14B_FX_A24_TP2.classes
                 throw new InvalidOperationException("Impossible de supprimer le coureur, car les informations du coureur n'existe pas dans la liste!");
 
             Coureurs.Remove(coureur);
-            Coureurs.Sort();
         }
         /// <summary>
         /// 
@@ -357,7 +355,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// </summary>
         public void TrierCoureurs()
         {
-
+            Coureurs.Sort();
         }
         /// <summary>
         /// Format d'affichage sur WPF
