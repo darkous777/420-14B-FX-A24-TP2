@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using _420_14B_FX_A24_TP2.classes;
+using _420_14B_FX_A24_TP2.enums;
 
 namespace _420_14B_FX_A24_TP2
 {
@@ -19,8 +21,30 @@ namespace _420_14B_FX_A24_TP2
     /// </summary>
     public partial class FormCoureur : Window
     {
-        public FormCoureur()
+
+
+        private Coureur _coureur;
+
+        public Coureur Coureur
         {
+            get { return _coureur; }
+            set { _coureur = value; }
+        }
+
+        private EtatFormulaire _etat;
+
+        public EtatFormulaire Etat
+        {
+            get { return _etat; }
+           private set { _etat = value; }
+        }
+
+        public FormCoureur( EtatFormulaire etat = EtatFormulaire.Ajouter, Coureur coureur = null)
+        {
+            Etat = etat;
+            Coureur = coureur;
+            
+            
             InitializeComponent();
         }
 
@@ -31,6 +55,51 @@ namespace _420_14B_FX_A24_TP2
 
         private void btnAnnuler_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private bool ValiderFormulaireCoureur()
+        {
+           
+            string messageErreur = "";
+            
+            ushort numDossard;
+            if (!ushort.TryParse(txtDossard.Text, out numDossard) || numDossard < Coureur.DOSSARD_VAL_MIN)
+            {
+                messageErreur += $"Le numéro de dossard ne peut pas etre null et doit être plus grand que {Coureur.DOSSARD_VAL_MIN}. \n";
+            }
+
+            if (string.IsNullOrEmpty(txtNom.Text) || txtNom.Text.Trim().Length < Coureur.NOM_NB_CARC_MIN)
+            {
+                messageErreur += $"Le champ nom ne peut pas etre vide et doit avoir un minimum de {Coureur.NOM_NB_CARC_MIN} caractères.\n";
+            }
+
+            if (string.IsNullOrEmpty(txtPrenom.Text) || txtPrenom.Text.Trim().Length < Coureur.PRENOM_NB_CARC_MIN)
+            {
+                messageErreur += $"Le champ prénom ne peut pas être vide et doit avoir un minimum de {Coureur.PRENOM_NB_CARC_MIN} caractères.\n";
+            }
+
+            if (string.IsNullOrEmpty(txtVille.Text) || txtVille.Text.Trim().Length < Coureur.VILLE_NB_CARC_MIN)
+            {
+                messageErreur += $"Le champ ville ne peut pas être vide et doit avoir un minimum de {Coureur.VILLE_NB_CARC_MIN} caractères.\n";
+            }
+
+            if (cboProvince.SelectedIndex == -1)
+            {
+                messageErreur += $"Le champ province doit être rempli. \n";
+            }
+
+            if (cboCategorie.SelectedIndex == -1)
+            {
+                messageErreur += $"Le champ catégorie doit être rempli. \n";
+            }
+
+            if (messageErreur != "")
+            {
+                MessageBox.Show(messageErreur, "Enregistrement pas reussi");
+            }
+
+            return messageErreur == "";
 
         }
     }
