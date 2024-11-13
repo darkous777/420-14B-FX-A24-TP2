@@ -66,9 +66,9 @@ namespace _420_14B_FX_A24_TP2
             {
                 txtNom.Text = Course.Nom;
                 txtVille.Text = Course.Ville;
-                lstProvince.Text = Course.Province.GetDescription();
+                cboProvince.Text = Course.Province.GetDescription();
                 dtpDateDepart.SelectedDate = Course.Date.ToDateTime(TimeOnly.MinValue);
-                lstType.Text = Course.TypeCourse.GetDescription();
+                cboTypeCourse.Text = Course.TypeCourse.GetDescription();
                 txtDistance.Text = Course.Distance.ToString();
                 txtNbParticipants.Text = Course.NbParticipants.ToString();
                 txtTempsCourseMoyen.Text = Course.TempCourseMoyen.ToString(@"hh\:mm\:ss");
@@ -77,9 +77,9 @@ namespace _420_14B_FX_A24_TP2
                 {
                     txtNom.IsEnabled = false;
                     txtVille.IsEnabled = false;
-                    lstProvince.IsEnabled = false;
+                    cboProvince.IsEnabled = false;
                     dtpDateDepart.IsEnabled = false;
-                    lstType.IsEnabled = false;
+                    cboTypeCourse.IsEnabled = false;
                     txtDistance.IsEnabled = false;
                 }
             }
@@ -88,12 +88,12 @@ namespace _420_14B_FX_A24_TP2
 
             foreach (string province in UtilEnum.GetAllDescriptions<Province>())
             {
-                lstProvince.Items.Add(province);
+                cboProvince.Items.Add(province);
             }
 
             foreach(string typeCourse in UtilEnum.GetAllDescriptions<TypeCourse>())
             {
-                lstType.Items.Add(typeCourse);
+                cboTypeCourse.Items.Add(typeCourse);
             }
 
         }
@@ -108,13 +108,13 @@ namespace _420_14B_FX_A24_TP2
             if (string.IsNullOrWhiteSpace(txtVille.Text) || txtVille.Text.Length < Course.VILLE_NB_CAR_MIN)
                 message += $"- Le nom de la ville d'une course doit contenir au moins {Course.VILLE_NB_CAR_MIN} caractères.\n";
 
-            if (lstProvince.SelectedItem is null)
+            if (cboProvince.SelectedItem is null)
                 message += $"- La province doit être sélectionné.\n";
 
             if (dtpDateDepart.SelectedDate is null || dtpDateDepart.SelectedDate > DateTime.Now)
                 message += $"- La date doit être sélectionné et doit être précédente à la date d'aujourd'hui.\n";
 
-            if (lstType.SelectedItem is null)
+            if (cboTypeCourse.SelectedItem is null)
                 message += $"- Le type de course doit être sélectionné.\n";
 
             byte distance;

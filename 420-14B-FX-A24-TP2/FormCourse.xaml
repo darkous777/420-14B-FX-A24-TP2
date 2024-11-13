@@ -34,7 +34,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,10">
                                 <Label Width="80">Province</Label>
-                                <ComboBox x:Name="lstProvince" Width="213" Height="30" VerticalAlignment="Top">
+                                <ComboBox x:Name="cboProvince" Width="213" Height="30" VerticalAlignment="Top">
                                 </ComboBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,10">
@@ -43,7 +43,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,10">
                                 <Label Width="80">Type</Label>
-                                <ComboBox x:Name="lstType" Width="210" Height="30" VerticalAlignment="Top">
+                                <ComboBox x:Name="cboTypeCourse" Width="210" Height="30" VerticalAlignment="Top">
                                 </ComboBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" >
