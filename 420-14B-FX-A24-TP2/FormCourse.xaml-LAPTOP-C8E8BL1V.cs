@@ -90,12 +90,6 @@ namespace _420_14B_FX_A24_TP2
             {
                 lstProvince.Items.Add(province);
             }
-
-            foreach(string typeCourse in UtilEnum.GetAllDescriptions<TypeCourse>())
-            {
-                lstType.Items.Add(typeCourse);
-            }
-
         }
 
         private bool ValiderCourse()
