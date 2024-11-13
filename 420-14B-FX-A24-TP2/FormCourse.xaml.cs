@@ -85,9 +85,35 @@ namespace _420_14B_FX_A24_TP2
             }
         }
 
+        private bool ValiderCourse()
+        {
+            string message = "";
+
+            if (string.IsNullOrWhiteSpace(txtNom.Text) || txtNom.Text.Length < Course.NOM_NB_CAR_MIN)
+                message += $"- Le nom de la course doit contenir au moins {Course.NOM_NB_CAR_MIN} caractères.\n";
+
+            if (string.IsNullOrWhiteSpace(txtVille.Text) || txtVille.Text.Length < Course.VILLE_NB_CAR_MIN)
+                message += $"- Le nom de la ville d'une course doit contenir au moins {Course.VILLE_NB_CAR_MIN} caractères.\n";
+
+            //ushort annee;
+            //if (!ushort.TryParse(txtAnnee.Text, out annee) || annee < Film.ANNEE_MIN || annee > DateTime.Now.Year)
+            //    message += $"- L'anné doit être une valeur numérique comprise entre {Film.ANNEE_MIN} et {DateTime.Now.Year}\n";
+
+            if (message != "")
+            {
+                System.Windows.MessageBox.Show($"Veuillez corriger les erreurs suivantes : \n\n{message}", "Validation d'une course");
+                return false;
+            }
+
+            return true;
+        }
+
         private void btnClick_Click(object sender, RoutedEventArgs e)
         {
+            if (ValiderCourse())
+            {
 
+            }
         }
 
         private void btnAnnuler_Click(object sender, RoutedEventArgs e)

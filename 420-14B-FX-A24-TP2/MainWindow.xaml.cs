@@ -14,9 +14,9 @@ namespace _420_14B_FX_A24_TP2
         public const string CHEMIN_FICHIER_COURSE_CSV = "C:\\data-420-14B-FX\\TP2\\courses.csv";
         public GestionCourse _gestionCourse;
 
-       
 
-       
+
+
 
         public MainWindow()
         {
@@ -40,67 +40,100 @@ namespace _420_14B_FX_A24_TP2
 
         private void btnNouveau_Click(object sender, RoutedEventArgs e)
         {
-            FormCourse formCourse = new FormCourse();
-
-            if (formCourse.ShowDialog() is true)
+            try
             {
-                _gestionCourse.AjouterCourse(formCourse.Course);
+                FormCourse formCourse = new FormCourse();
 
-               // _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSE_CSV, CHEMIN_FICHIER_COUREURS_CSV);
-                AfficherListeCourses();
+                if (formCourse.ShowDialog() is true)
+                {
+                    _gestionCourse.AjouterCourse(formCourse.Course);
 
-                MessageBox.Show("La course a bien été ajouter!");
+                    // _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSE_CSV, CHEMIN_FICHIER_COUREURS_CSV);
+                    AfficherListeCourses();
+
+                    MessageBox.Show("La course a bien été ajouter!", "Ajout d'une nouvelle course");
+                }
+
+
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'un film", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
+
         }
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
-            if (lstCourses.SelectedItem != null)
+            try
             {
-                FormCourse formCourse = new FormCourse(EtatFormulaire.Modifier, lstCourses.SelectedItem as Course);
-
-                if(formCourse.ShowDialog() is true)
+                if (lstCourses.SelectedItem != null)
                 {
-                    // _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSE_CSV, CHEMIN_FICHIER_COUREURS_CSV);
+                    FormCourse formCourse = new FormCourse(EtatFormulaire.Modifier, lstCourses.SelectedItem as Course);
 
-                    AfficherListeCourses();
+                    if (formCourse.ShowDialog() is true)
+                    {
+                        // _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSE_CSV, CHEMIN_FICHIER_COUREURS_CSV);
 
-                    MessageBox.Show("La course a bien été modifier!");
+                        AfficherListeCourses();
+
+                        MessageBox.Show("La course a bien été modifier!");
+
+                    }
 
                 }
+                else
+                {
+                    MessageBox.Show("Vous devez sélectionner une course dans la liste!");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Vous devez sélectionner une course dans la liste!");
+                MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'un film", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
+
+
+
         }
 
         private void btnSupprimer_Click(object sender, RoutedEventArgs e)
         {
-
-            if (lstCourses.SelectedItem != null)
+            try
             {
-                Course courseSelect = lstCourses.SelectedItem as Course;
 
-                FormCourse formCourse = new FormCourse(EtatFormulaire.Supprimer, courseSelect);
-
-                if (formCourse.ShowDialog() is true)
+                if (lstCourses.SelectedItem != null)
                 {
+                    Course courseSelect = lstCourses.SelectedItem as Course;
 
-                    _gestionCourse.SupprimerCourse(courseSelect);
+                    FormCourse formCourse = new FormCourse(EtatFormulaire.Supprimer, courseSelect);
 
-                    // _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSE_CSV, CHEMIN_FICHIER_COUREURS_CSV); 
+                    if (formCourse.ShowDialog() is true)
+                    {
 
-                    AfficherListeCourses();
+                        _gestionCourse.SupprimerCourse(courseSelect);
 
-                    MessageBox.Show("La course a bien été supprimér!");
+                        // _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSE_CSV, CHEMIN_FICHIER_COUREURS_CSV); 
+
+                        AfficherListeCourses();
+
+                        MessageBox.Show("La course a bien été supprimér!");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Vous devez sélectionner une course dans la liste!");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Vous devez sélectionner une course dans la liste!");
+                MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'un film", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
         }
+
 
     }
 }
