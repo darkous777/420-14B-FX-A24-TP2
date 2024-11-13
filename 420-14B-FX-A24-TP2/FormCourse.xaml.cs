@@ -62,19 +62,28 @@ namespace _420_14B_FX_A24_TP2
             prvTitle.Text = $"{Etat} une course";
             btnAjoutCourse.Content = Etat;
 
+            tableCoureurs.IsEnabled = false;
+
             if (Etat != EtatFormulaire.Ajouter && Course is not null)
             {
+                tableCoureurs.IsEnabled = true;
+
                 txtNom.Text = Course.Nom;
                 txtVille.Text = Course.Ville;
-                cboProvince.Text = Course.Province.GetDescription();
+                cboProvince.SelectedValue = Course.Province.GetDescription();
                 dtpDateDepart.SelectedDate = Course.Date.ToDateTime(TimeOnly.MinValue);
-                cboTypeCourse.Text = Course.TypeCourse.GetDescription();
+                cboTypeCourse.SelectedValue = Course.TypeCourse.GetDescription();
                 txtDistance.Text = Course.Distance.ToString();
                 txtNbParticipants.Text = Course.NbParticipants.ToString();
                 txtTempsCourseMoyen.Text = Course.TempCourseMoyen.ToString(@"hh\:mm\:ss");
 
+                foreach (Coureur c in Course.Coureurs)
+                    lstCoureurs.Items.Add(c);
+
                 if (Etat == EtatFormulaire.Supprimer)
                 {
+
+
                     txtNom.IsEnabled = false;
                     txtVille.IsEnabled = false;
                     cboProvince.IsEnabled = false;
@@ -91,7 +100,7 @@ namespace _420_14B_FX_A24_TP2
                 cboProvince.Items.Add(province);
             }
 
-            foreach(string typeCourse in UtilEnum.GetAllDescriptions<TypeCourse>())
+            foreach (string typeCourse in UtilEnum.GetAllDescriptions<TypeCourse>())
             {
                 cboTypeCourse.Items.Add(typeCourse);
             }
@@ -111,7 +120,7 @@ namespace _420_14B_FX_A24_TP2
             if (cboProvince.SelectedItem is null)
                 message += $"- La province doit être sélectionné.\n";
 
-            if (dtpDateDepart.SelectedDate is null || dtpDateDepart.SelectedDate > DateTime.Now)
+            if (dtpDateDepart.SelectedDate is null || dtpDateDepart.SelectedDate < DateTime.Now)
                 message += $"- La date doit être sélectionné et doit être précédente à la date d'aujourd'hui.\n";
 
             if (cboTypeCourse.SelectedItem is null)
@@ -132,23 +141,52 @@ namespace _420_14B_FX_A24_TP2
 
         private void btnClick_Click(object sender, RoutedEventArgs e)
         {
-            if (ValiderCourse())
+
+            switch (Etat)
             {
-                switch (Etat)
-                {
-                    case EtatFormulaire.Ajouter:
-                        //Course = new Course(Guid.NewGuid(), txtNom.Text, DateOnly.FromDateTime(dtpDateDepart.SelectedDate.Value), txtVille.Text, , , byte.Parse(txtDistance.Text);
-                        break;
 
-                    case EtatFormulaire.Modifier:
+                case EtatFormulaire.Ajouter:
 
-                        break;
+                    if(ValiderCourse())
+                    {
+                        Course = new Course(Guid.NewGuid(), txtNom.Text, DateOnly.FromDateTime(dtpDateDepart.SelectedDate.Value), txtVille.Text, (enums.Province)cboProvince.SelectedIndex, (enums.TypeCourse)cboTypeCourse.SelectedIndex, byte.Parse(txtDistance.Text));
+                    }
 
-                    case EtatFormulaire.Supprimer:
+                    DialogResult = true;
+                    break;
 
-                        break;
-                }
+                case EtatFormulaire.Modifier:
+
+                    if (ValiderCourse())
+                    {
+                        Course.Nom = txtNom.Text;
+                        Course.Ville = txtVille.Text;
+                        Course.Province = (enums.Province)cboProvince.SelectedIndex;
+                        Course.Date = DateOnly.FromDateTime(dtpDateDepart.SelectedDate.Value);
+                        Course.TypeCourse = (enums.TypeCourse)cboTypeCourse.SelectedIndex;
+                        Course.Distance = ushort.Parse(txtDistance.Text);
+                    }
+
+                    DialogResult = true;
+
+                    break;
+
+                case EtatFormulaire.Supprimer:
+
+                    MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show($"Êtes-vous sûre de vouloir supprimer la course?", "Suppression d'une course", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                    if (messageBoxResult == MessageBoxResult.Yes)
+                    {
+                        DialogResult = true;
+                    }
+                    else
+                    {
+                        DialogResult = false;
+                    }
+
+                    break;
             }
+
         }
 
         private void btnAnnuler_Click(object sender, RoutedEventArgs e)

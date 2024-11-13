@@ -55,7 +55,7 @@
 
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Coureurs">
+            <TabItem x:Name="tableCoureurs" Header="Coureurs">
                 <StackPanel>
                     <GroupBox>
                         <StackPanel>

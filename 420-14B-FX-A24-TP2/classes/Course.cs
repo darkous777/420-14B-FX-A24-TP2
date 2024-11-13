@@ -336,21 +336,25 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <returns></returns>
         private TimeSpan CalculerTempsCourseMoyen()
         {
-            double tempsTotalMs = 0;
-            double compteur = 0;
-
-            foreach (Coureur coureur in Coureurs)
+            if (NbParticipants is not 0)
             {
-                if (!coureur.Abandon && coureur.Temps != TimeSpan.Zero)
+                double tempsTotalMs = 0;
+                double compteur = 0;
+
+                foreach (Coureur coureur in Coureurs)
                 {
-                    tempsTotalMs += coureur.Temps.TotalMilliseconds;
-                    compteur++;
+                    if (!coureur.Abandon && coureur.Temps != TimeSpan.Zero)
+                    {
+                        tempsTotalMs += coureur.Temps.TotalMilliseconds;
+                        compteur++;
+                    }
                 }
+
+                TimeSpan tempsMoyen = TimeSpan.FromMilliseconds(tempsTotalMs / compteur);
+
+                return tempsMoyen;
             }
-
-            TimeSpan tempsMoyen = TimeSpan.FromMilliseconds(tempsTotalMs / compteur);
-
-            return tempsMoyen;
+            return TimeSpan.Zero;
         }
         /// <summary>
         /// 
