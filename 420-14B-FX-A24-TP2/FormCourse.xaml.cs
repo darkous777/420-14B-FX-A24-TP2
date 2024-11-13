@@ -50,8 +50,8 @@ namespace _420_14B_FX_A24_TP2
 
         }
 
-        public FormCourse(EtatFormulaire etat = EtatFormulaire.Ajouter, Course course = null) 
-        { 
+        public FormCourse(EtatFormulaire etat = EtatFormulaire.Ajouter, Course course = null)
+        {
             Etat = etat;
             Course = course;
             InitializeComponent();
@@ -95,9 +95,18 @@ namespace _420_14B_FX_A24_TP2
             if (string.IsNullOrWhiteSpace(txtVille.Text) || txtVille.Text.Length < Course.VILLE_NB_CAR_MIN)
                 message += $"- Le nom de la ville d'une course doit contenir au moins {Course.VILLE_NB_CAR_MIN} caractères.\n";
 
-            //ushort annee;
-            //if (!ushort.TryParse(txtAnnee.Text, out annee) || annee < Film.ANNEE_MIN || annee > DateTime.Now.Year)
-            //    message += $"- L'anné doit être une valeur numérique comprise entre {Film.ANNEE_MIN} et {DateTime.Now.Year}\n";
+            if (lstProvince.SelectedItem is null)
+                message += $"- La province doit être sélectionné.\n";
+
+            if (dtpDateDepart.SelectedDate is null || dtpDateDepart.SelectedDate > DateTime.Now)
+                message += $"- La date doit être sélectionné et doit être précédente à la date d'aujourd'hui.\n";
+
+            if (lstType.SelectedItem is null)
+                message += $"- Le type de course doit être sélectionné.\n";
+
+            byte distance;
+            if (!byte.TryParse(txtDistance.Text, out distance) || distance < Course.DISTANCE_VAL_MIN)
+                message += $"La distance doit être plus grande que {Course.DISTANCE_VAL_MIN}.\n";
 
             if (message != "")
             {
@@ -112,7 +121,20 @@ namespace _420_14B_FX_A24_TP2
         {
             if (ValiderCourse())
             {
+                switch (Etat)
+                {
+                    case EtatFormulaire.Ajouter:
+                        //Course = new Course(Guid.NewGuid(),txtNom.Text,DateOnly.FromDateTime(dtpDateDepart.SelectedDate) ,txtVille.Text, lstProvince.SelectedValue, lstType.SelectedItem, byte.Parse(txtDistance.Text);
+                        break;
 
+                    case EtatFormulaire.Modifier:
+
+                        break;
+
+                    case EtatFormulaire.Supprimer:
+
+                        break;
+                }
             }
         }
 
