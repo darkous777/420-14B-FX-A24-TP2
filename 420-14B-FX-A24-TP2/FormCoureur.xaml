@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:_420_14B_FX_A24_TP2"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
         mc:Ignorable="d"
-        Title="FormCoureur" Height="450" Width="400">
+        Title="FormCoureur" Height="450" Width="400" Loaded="Window_Loaded">
     <StackPanel Margin="10" RenderTransformOrigin="0.948,0.556">
         <TextBlock HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" Margin="0,20">
             Ajout d'un coureur
@@ -31,34 +31,13 @@
         <StackPanel Margin="5" Orientation="Horizontal">
             <Label Width="80">Province</Label>
             <ComboBox x:Name="cboProvince" Width="150" Height="20">
-                <ComboBoxItem>Alberta</ComboBoxItem>
-                <ComboBoxItem>ColombieBritannique</ComboBoxItem>
-                <ComboBoxItem>IlePrinceEdouard</ComboBoxItem>
-                <ComboBoxItem>Manitoba</ComboBoxItem>
-                <ComboBoxItem>NouveauBrunswick</ComboBoxItem>
-                <ComboBoxItem>NouvelleEcosse</ComboBoxItem>
-                <ComboBoxItem>Nunavut</ComboBoxItem>
-                <ComboBoxItem>Ontario</ComboBoxItem>
-                <ComboBoxItem>Quebec</ComboBoxItem>
-                <ComboBoxItem>Saskatchewan</ComboBoxItem>
-                <ComboBoxItem>TerreNeuveLabrador</ComboBoxItem>
-                <ComboBoxItem>TerritoiresNordOuest</ComboBoxItem>
-                <ComboBoxItem>Yukon</ComboBoxItem>
+
             </ComboBox>
         </StackPanel>
         <StackPanel Margin="5" Orientation="Horizontal">
             <Label Width="80">Catégorie</Label>
-            <ComboBox x:Name="cboCategorie" Width="150" Height="20">
-                <ComboBoxItem>M2029</ComboBoxItem>
-                <ComboBoxItem>M3039</ComboBoxItem>
-                <ComboBoxItem>M4049</ComboBoxItem>
-                <ComboBoxItem>M5059</ComboBoxItem>
-                <ComboBoxItem>M6069</ComboBoxItem>
-                <ComboBoxItem>F2029</ComboBoxItem>
-                <ComboBoxItem>F3039</ComboBoxItem>
-                <ComboBoxItem>F4049</ComboBoxItem>
-                <ComboBoxItem>F5059</ComboBoxItem>
-                <ComboBoxItem>F6069</ComboBoxItem>
+            <ComboBox x:Name="cboCategorie" Width="150" Height="20" >
+
             </ComboBox>
         </StackPanel>
         <StackPanel Margin="5"  Orientation="Horizontal">
