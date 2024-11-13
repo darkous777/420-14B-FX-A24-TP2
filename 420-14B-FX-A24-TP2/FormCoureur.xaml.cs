@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using _420_14B_FX_A24_TP2.classes;
+using _420_14B_FX_A24_TP2.enums;
 
 namespace _420_14B_FX_A24_TP2
 {
@@ -20,8 +21,30 @@ namespace _420_14B_FX_A24_TP2
     /// </summary>
     public partial class FormCoureur : Window
     {
-        public FormCoureur()
+
+
+        private Coureur _coureur;
+
+        public Coureur Coureur
         {
+            get { return _coureur; }
+            set { _coureur = value; }
+        }
+
+        private EtatFormulaire _etat;
+
+        public EtatFormulaire Etat
+        {
+            get { return _etat; }
+           private set { _etat = value; }
+        }
+
+        public FormCoureur( EtatFormulaire etat = EtatFormulaire.Ajouter, Coureur coureur = null)
+        {
+            Etat = etat;
+            Coureur = coureur;
+            
+            
             InitializeComponent();
         }
 
