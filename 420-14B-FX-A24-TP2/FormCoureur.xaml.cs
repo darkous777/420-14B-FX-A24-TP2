@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.JavaScript;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -101,6 +102,19 @@ namespace _420_14B_FX_A24_TP2
 
             return messageErreur == "";
 
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach (string categorie in UtilEnum.GetAllDescriptions<Categorie>())
+            {
+                cboCategorie.Items.Add(categorie);
+            }
+
+            foreach (string province in UtilEnum.GetAllDescriptions<Province>())
+            {
+                cboProvince.Items.Add(province);
+            }
         }
     }
 }
