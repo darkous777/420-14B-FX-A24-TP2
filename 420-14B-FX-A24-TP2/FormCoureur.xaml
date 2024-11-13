@@ -14,23 +14,23 @@
 
         <StackPanel Margin="5" Orientation="Horizontal">
             <Label Width="80">No.Dossard</Label>
-            <TextBox Width="50" Height="20"></TextBox>
+            <TextBox x:Name="txtDossard" Width="50" Height="20"></TextBox>
         </StackPanel>
         <StackPanel Margin="5" Orientation="Horizontal">
             <Label Width="80">Nom</Label>
-            <TextBox Width="150" Height="20"></TextBox>
+            <TextBox x:Name="txtNom" Width="150" Height="20"></TextBox>
         </StackPanel>
         <StackPanel Margin="5" Orientation="Horizontal">
             <Label Width="80">Prenom</Label>
-            <TextBox Width="150" Height="20"></TextBox>
+            <TextBox x:Name="txtPrenom" Width="150" Height="20"></TextBox>
         </StackPanel>
         <StackPanel Margin="5" Orientation="Horizontal">
             <Label Width="80">Ville</Label>
-            <TextBox Width="150" Height="20"></TextBox>
+            <TextBox x:Name="txtVille" Width="150" Height="20"></TextBox>
         </StackPanel>
         <StackPanel Margin="5" Orientation="Horizontal">
             <Label Width="80">Province</Label>
-            <ComboBox Width="150" Height="20">
+            <ComboBox x:Name="cboProvince" Width="150" Height="20">
                 <ComboBoxItem>Alberta</ComboBoxItem>
                 <ComboBoxItem>ColombieBritannique</ComboBoxItem>
                 <ComboBoxItem>IlePrinceEdouard</ComboBoxItem>
@@ -48,7 +48,7 @@
         </StackPanel>
         <StackPanel Margin="5" Orientation="Horizontal">
             <Label Width="80">Catégorie</Label>
-            <ComboBox Width="150" Height="20">
+            <ComboBox x:Name="cboCategorie" Width="150" Height="20">
                 <ComboBoxItem>M2029</ComboBoxItem>
                 <ComboBoxItem>M3039</ComboBoxItem>
                 <ComboBoxItem>M4049</ComboBoxItem>
@@ -63,12 +63,12 @@
         </StackPanel>
         <StackPanel Margin="5"  Orientation="Horizontal">
             <Label Width="80">Temps</Label>
-            <xctk:TimeSpanUpDown Height="20" Width="110" Minimum="0"></xctk:TimeSpanUpDown>
+            <xctk:TimeSpanUpDown x:Name="tsTemps" Height="20" Width="110" Minimum="0"></xctk:TimeSpanUpDown>
         </StackPanel>
 
         <StackPanel Margin="5"  Orientation="Horizontal">
             <Label Width="80"></Label>
-            <CheckBox>Abondon</CheckBox>
+            <CheckBox x:Name="checkAbandon">Abandon</CheckBox>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
