@@ -249,6 +249,10 @@ namespace _420_14B_FX_A24_TP2
                         System.Windows.MessageBox.Show("Le coureur à bien été modifier!", "Modification d'un coureur");
                     }
                 }
+                else
+                {
+                    System.Windows.MessageBox.Show("Vous devez sélectionner un coureur dans la liste!");
+                }
             }
             catch (Exception ex)
             {
@@ -259,7 +263,33 @@ namespace _420_14B_FX_A24_TP2
 
         private void btnSupprimerCoureurs_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (lstCoureurs.SelectedItem != null)
+                {
+                    Coureur coureur = lstCoureurs.SelectedItem as Coureur;
 
+                    FormCoureur formCoureur = new FormCoureur(EtatFormulaire.Supprimer, coureur);
+
+                    if (formCoureur.ShowDialog() is true)
+                    {
+                        Course.SupprimerCoureur(coureur);
+
+                        AfficherListeCoureurs();
+
+                        System.Windows.MessageBox.Show("Le coureur à bien été supprimmé!", "Suppression d'un coureur");
+                    }
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Vous devez sélectionner un coureur dans la liste!");
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Suppression d'un coureur", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
         }
 
         private void lstCoureurs_SelectionChanged(object sender, SelectionChangedEventArgs e)
