@@ -58,7 +58,7 @@ namespace _420_14B_FX_A24_TP2
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'un film", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'une Course", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
 
@@ -90,7 +90,7 @@ namespace _420_14B_FX_A24_TP2
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'un film", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'une Course", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
 
@@ -129,7 +129,7 @@ namespace _420_14B_FX_A24_TP2
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'un film", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'une Course", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
         }

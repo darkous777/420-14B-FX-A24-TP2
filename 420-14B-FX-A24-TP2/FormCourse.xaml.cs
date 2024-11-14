@@ -77,8 +77,7 @@ namespace _420_14B_FX_A24_TP2
                 txtNbParticipants.Text = Course.NbParticipants.ToString();
                 txtTempsCourseMoyen.Text = Course.TempCourseMoyen.ToString(@"hh\:mm\:ss");
 
-                foreach (Coureur c in Course.Coureurs)
-                    lstCoureurs.Items.Add(c);
+                AfficherListeCoureurs();
 
                 if (Etat == EtatFormulaire.Supprimer)
                 {
@@ -120,7 +119,7 @@ namespace _420_14B_FX_A24_TP2
             if (cboProvince.SelectedItem is null)
                 message += $"- La province doit être sélectionné.\n";
 
-            if (dtpDateDepart.SelectedDate is null || dtpDateDepart.SelectedDate < DateTime.Now)
+            if (Etat == EtatFormulaire.Ajouter && (dtpDateDepart.SelectedDate is null || dtpDateDepart.SelectedDate < DateTime.Now))
                 message += $"- La date doit être sélectionné et doit être précédente à la date d'aujourd'hui.\n";
 
             if (cboTypeCourse.SelectedItem is null)
@@ -139,6 +138,14 @@ namespace _420_14B_FX_A24_TP2
             return true;
         }
 
+        private void AfficherListeCoureurs()
+        {
+            lstCoureurs.Items.Clear();
+            Course.Coureurs.Sort();
+            foreach (Coureur c in Course.Coureurs)
+                lstCoureurs.Items.Add(c);
+        }
+
         private void btnClick_Click(object sender, RoutedEventArgs e)
         {
 
@@ -147,12 +154,17 @@ namespace _420_14B_FX_A24_TP2
 
                 case EtatFormulaire.Ajouter:
 
-                    if(ValiderCourse())
+                    if (ValiderCourse())
                     {
                         Course = new Course(Guid.NewGuid(), txtNom.Text, DateOnly.FromDateTime(dtpDateDepart.SelectedDate.Value), txtVille.Text, (enums.Province)cboProvince.SelectedIndex, (enums.TypeCourse)cboTypeCourse.SelectedIndex, byte.Parse(txtDistance.Text));
+
+                        DialogResult = true;
+                    }
+                    else
+                    {
+                        DialogResult = null;
                     }
 
-                    DialogResult = true;
                     break;
 
                 case EtatFormulaire.Modifier:
@@ -165,9 +177,14 @@ namespace _420_14B_FX_A24_TP2
                         Course.Date = DateOnly.FromDateTime(dtpDateDepart.SelectedDate.Value);
                         Course.TypeCourse = (enums.TypeCourse)cboTypeCourse.SelectedIndex;
                         Course.Distance = ushort.Parse(txtDistance.Text);
-                    }
 
-                    DialogResult = true;
+                        DialogResult = true;
+
+                    }
+                    else
+                    {
+                        DialogResult = null;
+                    }
 
                     break;
 
@@ -181,7 +198,7 @@ namespace _420_14B_FX_A24_TP2
                     }
                     else
                     {
-                        DialogResult = false;
+                        DialogResult = null;
                     }
 
                     break;
@@ -196,13 +213,48 @@ namespace _420_14B_FX_A24_TP2
 
         private void btnAjoutCoureurs_Click(object sender, RoutedEventArgs e)
         {
-            FormCoureur formCoureur = new FormCoureur();
-            formCoureur.ShowDialog();
+            try
+            {
+                FormCoureur formCoureur = new FormCoureur();
+
+                if (formCoureur.ShowDialog() is true)
+                {
+                    Course.AjouterCoureur(formCoureur.Coureur);
+
+                    AfficherListeCoureurs();
+
+                    System.Windows.MessageBox.Show("Le coureur à bien été ajouter!", "Ajout d'un nouveau coureur");
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'un coureur", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
         }
 
         private void btnModifierCoureurs_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (lstCoureurs.SelectedItem != null)
+                {
+                    FormCoureur formCoureur = new FormCoureur(EtatFormulaire.Modifier, lstCoureurs.SelectedItem as Coureur);
 
+                    if (formCoureur.ShowDialog() is true)
+                    {
+
+                        AfficherListeCoureurs();
+
+                        System.Windows.MessageBox.Show("Le coureur à bien été modifier!", "Modification d'un coureur");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Modification d'un coureur", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
         }
 
         private void btnSupprimerCoureurs_Click(object sender, RoutedEventArgs e)
