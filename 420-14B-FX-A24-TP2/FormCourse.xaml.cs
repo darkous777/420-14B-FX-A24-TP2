@@ -141,7 +141,6 @@ namespace _420_14B_FX_A24_TP2
         private void AfficherListeCoureurs()
         {
             lstCoureurs.Items.Clear();
-            Course.Coureurs.Sort();
             foreach (Coureur c in Course.Coureurs)
                 lstCoureurs.Items.Add(c);
         }
