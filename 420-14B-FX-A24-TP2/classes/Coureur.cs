@@ -252,7 +252,16 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <returns>L'affichage attendu de chaque coureur</returns>
         public override string ToString()
         {
-            return $"{Dossard},{Nom},{Prenom},{Categorie},{Ville},{Province},{Temps},{Abandon}";
+            string nomPrenom = $"{Nom.ToUpper()},{Prenom.ToUpper()}";
+
+            if (Rang > 0)
+            {
+                return $"{Dossard,-9} {nomPrenom,-42} {UtilEnum.GetDescription(Categorie),-19} {Temps,-14} {Rang}";
+            }
+            else
+            {
+                return $"{Dossard,-9} {nomPrenom,-42} {UtilEnum.GetDescription(Categorie),-19}";
+            }
         }
 
 
@@ -312,6 +321,9 @@ namespace _420_14B_FX_A24_TP2.classes
                 return 1;
 
             int tempsComparaison = Temps.CompareTo(other.Temps);
+
+            if (other.Abandon || other.Temps == TimeSpan.Zero)
+                return tempsComparaison = -1;
 
             if (Temps != TimeSpan.Zero && other.Temps != TimeSpan.Zero)
                 return tempsComparaison;
