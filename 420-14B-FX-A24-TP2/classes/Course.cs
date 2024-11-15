@@ -329,6 +329,7 @@ namespace _420_14B_FX_A24_TP2.classes
                 throw new InvalidOperationException("Impossible de supprimer le coureur, car les informations du coureur n'existe pas dans la liste!");
 
             Coureurs.Remove(coureur);
+            TrierCoureurs();
         }
         /// <summary>
         /// 
@@ -365,7 +366,19 @@ namespace _420_14B_FX_A24_TP2.classes
 
             foreach (Coureur c in Coureurs)
             {
-                c.Rang = ((ushort)(Coureurs.IndexOf(c) + 1));
+                if (c.Abandon || c.Temps == TimeSpan.Zero)
+                {
+                    c.Temps = TimeSpan.Zero;
+                }
+            }
+            Coureurs.Sort();
+
+            foreach (Coureur c in Coureurs)
+            {
+                if (!c.Abandon && c.Temps != TimeSpan.Zero)
+                {
+                    c.Rang = ((ushort)(Coureurs.IndexOf(c) + 1));
+                }
             }
         }
         /// <summary>
@@ -374,7 +387,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <returns>L'affichage attendu de chaque course</returns>
         public override string ToString()
         {
-            return $"{Nom,-37} {Ville,-27} {Province,-20} {Date}";
+            return $"{Nom,-37} {Ville,-27} {UtilEnum.GetDescription(Province),-20} {Date}";
         }
         /// <summary>
         /// 

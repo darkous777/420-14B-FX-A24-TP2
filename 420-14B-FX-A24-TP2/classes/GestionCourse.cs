@@ -88,6 +88,8 @@ namespace _420_14B_FX_A24_TP2.classes
 
                 ChargerCoureurs(course, cheminFichierCoureurs);
                 Courses.Add(course);
+                course.TrierCoureurs();
+
             }
             Courses.Sort();
 
@@ -190,10 +192,10 @@ namespace _420_14B_FX_A24_TP2.classes
 
             foreach (Course course in Courses)
             {
-                infoCourses += $"{course.Id};{course.Nom};{course.Ville};{course.Province};{course.Date};{course.TypeCourse};{course.Distance}\n";
+                infoCourses += $"{course.Id};{course.Nom};{course.Ville};{Convert.ToInt32(course.Province)};{course.Date};{Convert.ToInt32(course.TypeCourse)};{course.Distance}\n";
                 foreach (Coureur coureur in course.Coureurs)
                 {
-                    infoCoureurs += $"{course.Id};{coureur.Dossard};{coureur.Nom};{coureur.Prenom};{coureur.Ville};{coureur.Province};{coureur.Categorie};{coureur.Temps};{coureur.Abandon}\n";
+                    infoCoureurs += $"{course.Id};{coureur.Dossard};{coureur.Nom};{coureur.Prenom};{coureur.Ville};{Convert.ToInt32(coureur.Province)};{Convert.ToInt32(coureur.Categorie)};{coureur.Temps};{coureur.Abandon}\n";
 
                 }
             }
