@@ -61,7 +61,7 @@ namespace _420_14B_FX_A24_TP2
         {
             prvTitle.Text = $"{Etat} une course";
             btnAjoutCourse.Content = Etat;
-
+            dtpDateDepart.SelectedDate = DateTime.Now;
             tableCoureurs.IsEnabled = false;
 
             if (Etat != EtatFormulaire.Ajouter && Course is not null)
@@ -105,7 +105,10 @@ namespace _420_14B_FX_A24_TP2
             }
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private bool ValiderCourse()
         {
             string message = "";
@@ -118,9 +121,6 @@ namespace _420_14B_FX_A24_TP2
 
             if (cboProvince.SelectedItem is null)
                 message += $"- La province doit être sélectionné.\n";
-
-            if (Etat == EtatFormulaire.Ajouter && (dtpDateDepart.SelectedDate is null || dtpDateDepart.SelectedDate < DateTime.Now))
-                message += $"- La date doit être sélectionné et doit être précédente à la date d'aujourd'hui.\n";
 
             if (cboTypeCourse.SelectedItem is null)
                 message += $"- Le type de course doit être sélectionné.\n";
@@ -137,7 +137,9 @@ namespace _420_14B_FX_A24_TP2
 
             return true;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void AfficherListeCoureurs()
         {
             lstCoureurs.Items.Clear();
@@ -227,7 +229,7 @@ namespace _420_14B_FX_A24_TP2
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'un coureur", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'un coureur", MessageBoxButton.OK);
 
             }
         }
@@ -255,7 +257,7 @@ namespace _420_14B_FX_A24_TP2
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Modification d'un coureur", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Modification d'un coureur", MessageBoxButton.OK);
 
             }
         }
@@ -286,14 +288,9 @@ namespace _420_14B_FX_A24_TP2
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Suppression d'un coureur", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Suppression d'un coureur", MessageBoxButton.OK);
 
             }
-        }
-
-        private void lstCoureurs_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

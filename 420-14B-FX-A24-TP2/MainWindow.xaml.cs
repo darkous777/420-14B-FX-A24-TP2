@@ -12,6 +12,12 @@ namespace _420_14B_FX_A24_TP2
     {
         public const string CHEMIN_FICHIER_COUREURS_CSV = "C:\\data-420-14B-FX\\TP2\\coureurs.csv";
         public const string CHEMIN_FICHIER_COURSE_CSV = "C:\\data-420-14B-FX\\TP2\\courses.csv";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string CHEMIN_FICHIER_COUREURS_CSV2 = "C:\\data-420-14B-FX\\TP1\\coureurs.csv";
+        public const string CHEMIN_FICHIER_COURSE_CSV2 = "C:\\data-420-14B-FX\\TP1\\courses.csv";
         public GestionCourse _gestionCourse;
 
 
@@ -48,7 +54,7 @@ namespace _420_14B_FX_A24_TP2
                 {
                     _gestionCourse.AjouterCourse(formCourse.Course);
 
-                    // _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSE_CSV, CHEMIN_FICHIER_COUREURS_CSV);
+                    _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSE_CSV2, CHEMIN_FICHIER_COUREURS_CSV2);
                     AfficherListeCourses();
 
                     MessageBox.Show("La course a bien été ajouter!", "Ajout d'une nouvelle course");
@@ -58,7 +64,7 @@ namespace _420_14B_FX_A24_TP2
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'une Course", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'une Course", MessageBoxButton.OK);
 
             }
 
@@ -74,7 +80,7 @@ namespace _420_14B_FX_A24_TP2
 
                     if (formCourse.ShowDialog() is true)
                     {
-                        // _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSE_CSV, CHEMIN_FICHIER_COUREURS_CSV);
+                        _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSE_CSV2, CHEMIN_FICHIER_COUREURS_CSV2);
 
                         AfficherListeCourses();
 
@@ -90,7 +96,7 @@ namespace _420_14B_FX_A24_TP2
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'une Course", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'une Course", MessageBoxButton.OK);
 
             }
 
@@ -114,7 +120,7 @@ namespace _420_14B_FX_A24_TP2
 
                         _gestionCourse.SupprimerCourse(courseSelect);
 
-                        // _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSE_CSV, CHEMIN_FICHIER_COUREURS_CSV); 
+                        _gestionCourse.EnregistrerCourses(CHEMIN_FICHIER_COURSE_CSV2, CHEMIN_FICHIER_COUREURS_CSV2);
 
                         AfficherListeCourses();
 
@@ -129,7 +135,7 @@ namespace _420_14B_FX_A24_TP2
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'une Course", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'une Course", MessageBoxButton.OK);
 
             }
         }

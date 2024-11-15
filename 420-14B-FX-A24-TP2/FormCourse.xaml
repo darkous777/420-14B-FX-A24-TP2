@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:_420_14B_FX_A24_TP2"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="FormCourse" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="FormCourse" Height="500" Width="800" Loaded="Window_Loaded">
 
     <StackPanel>
         <TextBlock HorizontalAlignment="Center" Margin="10" FontWeight="Black" x:Name="prvTitle" FontSize="20">Ajouter une course</TextBlock>
@@ -68,7 +68,7 @@
                                     <TextBlock  Text="RANG" FontWeight="Bold"  HorizontalAlignment="Left"/>
                                 </StackPanel>
                                 <StackPanel>
-                                    <ListBox x:Name="lstCoureurs"   Width="740" Height="200" VerticalAlignment="top" Margin="0,0,10,0" HorizontalAlignment="Left" FontFamily="Courier New" SelectionChanged="lstCoureurs_SelectionChanged"></ListBox>
+                                    <ListBox x:Name="lstCoureurs"   Width="740" Height="200" VerticalAlignment="top" Margin="0,0,10,0" HorizontalAlignment="Left" FontFamily="Courier New"></ListBox>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,10">
