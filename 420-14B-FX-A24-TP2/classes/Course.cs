@@ -125,7 +125,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// </summary>
         /// <value>Obtien ou modifie la valeur de l'attribut :  _ville.</value>
         /// <exception cref="System.ArgumentNullException">Lancée lorsque que la ville est nulle ou n'a aucune valeur.</exception>
-        /// <exception cref="System.ArgumentException">Lancé lors que la ville a moins de VILLE_NB_CAR_MIN caractères.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">Lancé lors que la ville a moins de VILLE_NB_CAR_MIN caractères.</exception>
         public string Ville
         {
             get { return _ville; }

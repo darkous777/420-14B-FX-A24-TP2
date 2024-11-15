@@ -43,7 +43,7 @@ namespace _420_14B_FX_A24_TP2
             set
             {
                 if (!(Enum.IsDefined(typeof(EtatFormulaire), value)))
-                    throw new ArgumentOutOfRangeException(nameof(EtatFormulaire), $"La valeur {value} n'est pas existante dans les choix.");
+                    throw new ArgumentOutOfRangeException(nameof(Etat), $"La valeur {value} n'est pas existante dans les choix.");
 
                 _etat = value;
             }
@@ -227,10 +227,26 @@ namespace _420_14B_FX_A24_TP2
                     System.Windows.MessageBox.Show("Le coureur à bien été ajouter!", "Ajout d'un nouveau coureur");
                 }
             }
+            catch (ArgumentNullException nul)
+            {
+                System.Windows.MessageBox.Show("Une erreur s'est produit : " + nul.Message, "Ajout d'un coureur", MessageBoxButton.OK);
+            }
+            catch (ArgumentOutOfRangeException outRange)
+            {
+                System.Windows.MessageBox.Show("Une erreur s'est produit : " + outRange.Message, "Ajout d'un coureur", MessageBoxButton.OK);
+            }
+            catch (InvalidOperationException nonExistant)
+            {
+                System.Windows.MessageBox.Show("Une erreur s'est produit : " + nonExistant.Message, "Ajout d'un coureur", MessageBoxButton.OK);
+            }
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'un coureur", MessageBoxButton.OK);
 
+            }
+            finally
+            {
+                AfficherListeCoureurs();
             }
         }
 
@@ -255,10 +271,22 @@ namespace _420_14B_FX_A24_TP2
                     System.Windows.MessageBox.Show("Vous devez sélectionner un coureur dans la liste!");
                 }
             }
+            catch (ArgumentNullException nul)
+            {
+                System.Windows.MessageBox.Show("Une erreur s'est produit : " + nul.Message, "Modification d'un coureur", MessageBoxButton.OK);
+            }
+            catch (ArgumentOutOfRangeException outRange)
+            {
+                System.Windows.MessageBox.Show("Une erreur s'est produit : " + outRange.Message, "Modification d'un coureur", MessageBoxButton.OK);
+            }
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Modification d'un coureur", MessageBoxButton.OK);
 
+            }
+            finally
+            {
+                AfficherListeCoureurs();
             }
         }
 
@@ -286,10 +314,26 @@ namespace _420_14B_FX_A24_TP2
                     System.Windows.MessageBox.Show("Vous devez sélectionner un coureur dans la liste!");
                 }
             }
+            catch (ArgumentNullException nul)
+            {
+                System.Windows.MessageBox.Show("Une erreur s'est produit : " + nul.Message, "Suppression d'un coureur", MessageBoxButton.OK);
+            }
+            catch (ArgumentOutOfRangeException outRange)
+            {
+                System.Windows.MessageBox.Show("Une erreur s'est produit : " + outRange.Message, "Suppression d'un coureur", MessageBoxButton.OK);
+            }
+            catch (InvalidOperationException nonExistant)
+            {
+                System.Windows.MessageBox.Show("Une erreur s'est produit : " + nonExistant.Message, "Suppression d'un coureur", MessageBoxButton.OK);
+            }
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Suppression d'un coureur", MessageBoxButton.OK);
 
+            }
+            finally
+            {
+                AfficherListeCoureurs();
             }
         }
     }

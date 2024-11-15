@@ -1,6 +1,7 @@
 ﻿
 using _420_14B_FX_A24_TP2.classes;
 using _420_14B_FX_A24_TP2.enums;
+using System.IO;
 using System.Windows;
 
 namespace _420_14B_FX_A24_TP2
@@ -62,12 +63,19 @@ namespace _420_14B_FX_A24_TP2
 
 
             }
+            catch (FileNotFoundException fichier)
+            {
+                MessageBox.Show("Une erreur s'est produit : " + fichier.Message, "Ajout d'une Course", MessageBoxButton.OK);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'une Course", MessageBoxButton.OK);
 
             }
-
+            finally
+            {
+                AfficherListeCourses();
+            }
         }
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
@@ -94,12 +102,19 @@ namespace _420_14B_FX_A24_TP2
                     MessageBox.Show("Vous devez sélectionner une course dans la liste!");
                 }
             }
+            catch (FileNotFoundException fichier)
+            {
+                MessageBox.Show("Une erreur s'est produit : " + fichier.Message, "Ajout d'une Course", MessageBoxButton.OK);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'une Course", MessageBoxButton.OK);
 
             }
-
+            finally
+            {
+                AfficherListeCourses();
+            }
 
 
         }
@@ -133,10 +148,18 @@ namespace _420_14B_FX_A24_TP2
                     MessageBox.Show("Vous devez sélectionner une course dans la liste!");
                 }
             }
+            catch(FileNotFoundException fichier) 
+            {
+                MessageBox.Show("Une erreur s'est produit : " + fichier.Message, "Ajout d'une Course", MessageBoxButton.OK);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'une Course", MessageBoxButton.OK);
 
+            }
+            finally
+            {
+                AfficherListeCourses();
             }
         }
 
