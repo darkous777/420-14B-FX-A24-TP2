@@ -244,10 +244,6 @@ namespace _420_14B_FX_A24_TP2
                 System.Windows.MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Ajout d'un coureur", MessageBoxButton.OK);
 
             }
-            finally
-            {
-                AfficherListeCoureurs();
-            }
         }
 
         private void btnModifierCoureurs_Click(object sender, RoutedEventArgs e)
@@ -283,10 +279,6 @@ namespace _420_14B_FX_A24_TP2
             {
                 System.Windows.MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Modification d'un coureur", MessageBoxButton.OK);
 
-            }
-            finally
-            {
-                AfficherListeCoureurs();
             }
         }
 
@@ -330,10 +322,6 @@ namespace _420_14B_FX_A24_TP2
             {
                 System.Windows.MessageBox.Show("Une erreur s'est produit : " + ex.Message, "Suppression d'un coureur", MessageBoxButton.OK);
 
-            }
-            finally
-            {
-                AfficherListeCoureurs();
             }
         }
     }
