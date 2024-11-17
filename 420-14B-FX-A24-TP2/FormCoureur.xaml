@@ -51,7 +51,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="btnAjouter" Width="100" Height="20"  Margin="0,20" Click="btnAjouterCoureur_Click" >Ajouter</Button >
+            <Button x:Name="SaveButton" Content="Créer/modifier/supprimer" Width="150" Margin="5" Click="SaveButton_Click"/>
             <Button x:Name="btnAnnuler" Width="100" Height="20"   Margin="11,0,0,0"  Click="btnAnnuler_Click">Annuler</Button>
         </StackPanel>
     </StackPanel>

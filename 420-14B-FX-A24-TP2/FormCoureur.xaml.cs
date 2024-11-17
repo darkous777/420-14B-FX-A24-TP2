@@ -56,7 +56,7 @@ namespace _420_14B_FX_A24_TP2
 
         private void btnAnnuler_Click(object sender, RoutedEventArgs e)
         {
-
+            DialogResult = false;
         }
 
         private bool ValiderFormulaireCoureur()
@@ -115,6 +115,7 @@ namespace _420_14B_FX_A24_TP2
             {
                 cboProvince.Items.Add(province);
             }
+            
         }
     }
 }
