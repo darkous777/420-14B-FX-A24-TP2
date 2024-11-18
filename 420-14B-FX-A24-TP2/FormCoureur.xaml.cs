@@ -24,16 +24,34 @@ namespace _420_14B_FX_A24_TP2
     public partial class FormCoureur : Window
     {
 
-
+        /// <summary>
+        /// Un coureur
+        /// </summary>
         private Coureur _coureur;
-
+       
+        /// <summary>
+        /// Definit un coureur
+        /// </summary>
+        ///<summary>
+        /// <value> Obtien ou modifie la valeur de l'attribut : _coureur </value>
+        ///</summary>
         public Coureur Coureur
         {
             get { return _coureur; }
             set { _coureur = value; }
         }
-
+        /// <summary>
+        /// Un Etat
+        /// </summary>
         private EtatFormulaire _etat;
+
+        /// <summary>
+        /// Modifie l'Etat du coureur
+        /// </summary>
+        ///<summary>
+        /// <value> Obtien ou modifie la valeur de l'attribut : _etat </value>
+        ///</summary>
+        /// <exception cref="System.ArgumentOutOfRangeException">Lancée lorsque la valeur de l'Etat n'est pas dans les valeurs de l'énumériation.</exception>
 
         public EtatFormulaire Etat
         {
@@ -47,7 +65,11 @@ namespace _420_14B_FX_A24_TP2
 
             }
         }
-
+        /// <summary>
+        /// Constructeur de FormCoureur
+        /// </summary>
+        /// <param name="coureur">Definit un coureur</param>
+        /// <param name="etat">Etat permettant de modifier, ajouter ou supprimer un coureur</param>
         public FormCoureur(EtatFormulaire etat = EtatFormulaire.Ajouter, Coureur coureur = null)
         {
             Etat = etat;
@@ -116,7 +138,6 @@ namespace _420_14B_FX_A24_TP2
                         DialogResult = null;
                     }
                     break;
-
             }
         }
 
@@ -125,6 +146,9 @@ namespace _420_14B_FX_A24_TP2
             DialogResult = false;
         }
 
+        /// <summary>
+        /// Methode qui valide les valeurs d'un coureur en entrée.
+        /// </summary>
         private bool ValiderFormulaireCoureur()
         {
 
