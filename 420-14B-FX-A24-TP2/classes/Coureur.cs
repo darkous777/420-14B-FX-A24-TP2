@@ -279,7 +279,7 @@ namespace _420_14B_FX_A24_TP2.classes
             if ((object)coureur1 == null || (object)coureur2 == null)
                 return false;
 
-            if (coureur1.Nom == coureur2.Nom && coureur1.Prenom == coureur2.Prenom && coureur1.Ville == coureur2.Ville && coureur1.Province == coureur2.Province)
+            if (coureur1.Nom.ToLower().Trim() == coureur2.Nom.ToLower().Trim() && coureur1.Prenom.ToLower().Trim() == coureur2.Prenom.ToLower().Trim() && coureur1.Ville.ToLower().Trim() == coureur2.Ville.ToLower().Trim() && coureur1.Province == coureur2.Province)
             {
                 return true;
             }

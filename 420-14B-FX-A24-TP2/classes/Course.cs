@@ -406,7 +406,7 @@ namespace _420_14B_FX_A24_TP2.classes
             if ((object)course1 == null || (object)course2 == null)
                 return false;
 
-            if (course1.Nom.ToLower().Trim() == course2.Nom.ToLower().Trim() && course1.Date == course2.Date && course1.Ville == course2.Ville && course1.Province == course2.Province && course1.TypeCourse == course2.TypeCourse && course1.Distance == course2.Distance)
+            if (course1.Nom.ToLower().Trim() == course2.Nom.ToLower().Trim() && course1.Date == course2.Date && course1.Ville.ToLower().Trim() == course2.Ville.ToLower().Trim() && course1.Province == course2.Province && course1.TypeCourse == course2.TypeCourse && course1.Distance == course2.Distance)
             {
                 return true;
             }
