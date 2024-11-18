@@ -63,14 +63,19 @@ namespace _420_14B_FX_A24_TP2
             {
 
                 case EtatFormulaire.Ajouter:
+                    
                     if (ValiderFormulaireCoureur())
                     {
+                        if (tsTemps.Text is null)
+                        {
+                            tsTemps.Text = TimeSpan.Zero.ToString();
+                        }
+                       
                         Coureur = new Coureur(ushort.Parse(txtDossard.Text), txtNom.Text, txtPrenom.Text, (enums.Categorie)cboCategorie.SelectedIndex, txtVille.Text, (enums.Province)cboProvince.SelectedIndex, TimeSpan.Parse(tsTemps.Text));
                         Coureur.Abandon = checkAbandon.IsChecked == true;
                         DialogResult = true;
-
-
                     }
+                   
                     else
                     {
                         DialogResult = false;
@@ -212,7 +217,6 @@ namespace _420_14B_FX_A24_TP2
                     cboCategorie.IsEnabled = false;
                     tsTemps.IsEnabled = false;
                     checkAbandon.IsChecked = false;
-
 
                 }
             }
