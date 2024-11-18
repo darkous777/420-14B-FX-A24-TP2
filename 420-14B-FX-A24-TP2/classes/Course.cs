@@ -424,10 +424,10 @@ namespace _420_14B_FX_A24_TP2.classes
             return !(course1 == course2);
         }
         /// <summary>
-        /// 
+        /// Détermine si les 2 object sont equivalentes(en pointeur "position")
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">l'object qu'on verifie</param>
+        /// <returns>true les 2 deux object on la même position sinon false</returns>
         public override bool Equals(object? obj)
         {
             if (obj is null || obj is not Course)
@@ -436,10 +436,10 @@ namespace _420_14B_FX_A24_TP2.classes
             return this == (Course)obj;
         }
         /// <summary>
-        /// 
+        /// Interface de comparaison pour les objets en fonction de la date de la course et du nom en ordre alphabetique.
         /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
+        /// <param name="other">Autre course à comparer avec l'instance actuelle</param>
+        /// <returns>Retourne une valeur : 0, 1, -1 dependant du CompareTo</returns>
         public int CompareTo(Course? other)
         {
             if (other is null)

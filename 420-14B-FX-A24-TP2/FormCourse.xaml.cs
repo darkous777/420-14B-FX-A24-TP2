@@ -10,16 +10,25 @@ namespace _420_14B_FX_A24_TP2
     public partial class FormCourse : Window
     {
 
-
+        /// <summary>
+        /// Une course
+        /// </summary>
         private Course _course;
-
+        /// <summary>
+        /// Obtient ou défini la course
+        /// </summary>
         public Course Course
         {
             get { return _course; }
             set { _course = value; }
         }
-
+        /// <summary>
+        /// Etat du formulaire
+        /// </summary>
         private EtatFormulaire _etat;
+        /// <summary>
+        /// Obtient ou defini l'etat du formulaire
+        /// </summary>
         public EtatFormulaire Etat
         {
             get
@@ -35,7 +44,11 @@ namespace _420_14B_FX_A24_TP2
             }
 
         }
-
+        /// <summary>
+        /// Constructeur du FormCourse
+        /// </summary>
+        /// <param name="etat">Etat dans lequel le formulaire changera</param>
+        /// <param name="course">Course dans laquelle les manipulation seront effectuee</param>
         public FormCourse(EtatFormulaire etat = EtatFormulaire.Ajouter, Course course = null)
         {
             Etat = etat;
@@ -93,9 +106,9 @@ namespace _420_14B_FX_A24_TP2
 
         }
         /// <summary>
-        /// 
+        /// Methode de validation des informations recu
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True si l'utilisateur respect les conditions sinon False</returns>
         private bool ValiderCourse()
         {
             string message = "";
@@ -125,7 +138,7 @@ namespace _420_14B_FX_A24_TP2
             return true;
         }
         /// <summary>
-        /// 
+        /// Methode permettant l'affichage sur WPF
         /// </summary>
         private void AfficherListeCoureurs()
         {

@@ -263,8 +263,6 @@ namespace _420_14B_FX_A24_TP2.classes
                 return $"{Dossard,-9} {nomPrenom,-42} {UtilEnum.GetDescription(Categorie),-19}";
             }
         }
-
-
         /// <summary>
         /// Détermine si les 2 coureurs sont equivalentes(en valeur)
         /// </summary>
@@ -309,11 +307,11 @@ namespace _420_14B_FX_A24_TP2.classes
             return this == (Coureur)obj;
         }
         /// <summary>
-        /// Interface de comparaison pour les objets en fonction du temps de course et du rang.
+        /// Interface de comparaison pour les objets en fonction du temps de course et du rang
         /// </summary>
-        /// <param name="other">Autre coureur à comparer avec l'instance actuelle.</param>
+        /// <param name="other">Autre coureur à comparer avec l'instance actuelle</param>
         /// <returns>
-        /// Retourne une valeur : 0, 1, -1 dependant du CompareTo.
+        /// Retourne une valeur : 0, 1, -1 dependant du CompareTo
         /// </returns>
         public int CompareTo(Coureur? other)
         {
