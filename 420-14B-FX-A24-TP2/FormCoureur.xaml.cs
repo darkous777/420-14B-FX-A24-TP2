@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using _420_14B_FX_A24_TP2.classes;
 using _420_14B_FX_A24_TP2.enums;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace _420_14B_FX_A24_TP2
 {
@@ -37,33 +38,45 @@ namespace _420_14B_FX_A24_TP2
         public EtatFormulaire Etat
         {
             get { return _etat; }
-           private set { _etat = value; }
+            private set { _etat = value; }
         }
 
-        public FormCoureur( EtatFormulaire etat = EtatFormulaire.Ajouter, Coureur coureur = null)
+        public FormCoureur(EtatFormulaire etat = EtatFormulaire.Ajouter, Coureur coureur = null)
         {
             Etat = etat;
             Coureur = coureur;
-            
-            
+
+
             InitializeComponent();
         }
 
-        private void btnAjouterCoureur_Click(object sender, RoutedEventArgs e)
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             
+
+
+
+            
+
+
         }
+
+
+
+
 
         private void btnAnnuler_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
         }
 
+
+
         private bool ValiderFormulaireCoureur()
         {
-           
+
             string messageErreur = "";
-            
+
             ushort numDossard;
             if (!ushort.TryParse(txtDossard.Text, out numDossard) || numDossard < Coureur.DOSSARD_VAL_MIN)
             {
@@ -115,7 +128,37 @@ namespace _420_14B_FX_A24_TP2
             {
                 cboProvince.Items.Add(province);
             }
-            
+            titreFormCoureur.Text = $"{Etat} une course";
+            SaveButton.Content = Etat;
+
+            if (Etat != EtatFormulaire.Ajouter && Coureur is not null)
+            {
+                txtDossard.Text = Coureur.Dossard.ToString();
+                txtNom.Text = Coureur.Nom;
+                txtPrenom.Text = Coureur.Prenom;
+                txtVille.Text = Coureur.Ville;
+                cboProvince.SelectedValue = Coureur.Province.GetDescription();
+                cboCategorie.SelectedValue = Coureur.Categorie.GetDescription();
+                tsTemps.Text = Coureur.Temps.ToString();
+                checkAbandon.IsChecked = Coureur.Abandon;
+
+                if (Etat == EtatFormulaire.Supprimer)
+                {
+                    txtDossard.IsEnabled = false;
+                    txtNom.IsEnabled = false;
+                    txtPrenom.IsEnabled = false;
+                    txtVille.IsEnabled = false;
+                    cboProvince.IsEnabled = false;
+                    cboCategorie.IsEnabled = false;
+                    tsTemps.IsEnabled = false;
+                    checkAbandon.IsChecked = false;
+
+
+                }
+            }
+
+
+
         }
     }
 }

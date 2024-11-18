@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="FormCoureur" Height="450" Width="400" Loaded="Window_Loaded">
     <StackPanel Margin="10" RenderTransformOrigin="0.948,0.556">
-        <TextBlock HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" Margin="0,20">
+        <TextBlock HorizontalAlignment="Center" x:Name="titreFormCoureur" FontWeight="Bold" FontSize="20" Margin="0,20">
             Ajout d'un coureur
         </TextBlock>
 
