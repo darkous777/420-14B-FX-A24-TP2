@@ -360,7 +360,7 @@ namespace _420_14B_FX_A24_TP2.classes
             return TimeSpan.Zero;
         }
         /// <summary>
-        /// 
+        /// Trie les coureurs en fonction de l'abandon et de leur temps
         /// </summary>
         public void TrierCoureurs()
         {
