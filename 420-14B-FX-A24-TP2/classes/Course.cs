@@ -317,9 +317,11 @@ namespace _420_14B_FX_A24_TP2.classes
             return null;
         }
         /// <summary>
-        /// 
+        /// Méthode permettanr de supprimer un coureur dans la liste de coureur
         /// </summary>
-        /// <param name="coureur"></param>
+        /// <param name="coureur">Coureur à vérifier si non existante sinon supprimer de la liste</param>
+        /// <exception cref="ArgumentNullException">Excecption retournant une exception si nulle</exception>
+        /// <exception cref="InvalidOperationException">Exception retournant une exception si non existante</exception>
         public void SupprimerCoureur(Coureur coureur)
         {
             if (coureur is null)
@@ -332,9 +334,9 @@ namespace _420_14B_FX_A24_TP2.classes
             TrierCoureurs();
         }
         /// <summary>
-        /// 
+        /// Methode permettant de calculer le temps moyen de tout les coureurs d'une course
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Temps moyen des coureurs de la course</returns>
         private TimeSpan CalculerTempsCourseMoyen()
         {
             if (NbParticipants is not 0)
@@ -390,11 +392,11 @@ namespace _420_14B_FX_A24_TP2.classes
             return $"{Nom,-37} {Ville,-27} {UtilEnum.GetDescription(Province),-20} {Date}";
         }
         /// <summary>
-        /// 
+        /// Détermine si les 2 courses sont equivalentes(en valeur)
         /// </summary>
-        /// <param name="course1"></param>
-        /// <param name="course2"></param>
-        /// <returns></returns>
+        /// <param name="course1">Le coureur cote gauche du egal</param>
+        /// <param name="course2">Le coureur cote droit du egal</param>
+        /// <returns>true les 2 deux coureurs on les mêmes valeurs sinon false</returns>
         public static bool operator ==(Course course1, Course course2)
         {
             if (object.ReferenceEquals(course1, course2))
@@ -411,11 +413,11 @@ namespace _420_14B_FX_A24_TP2.classes
             return false;
         }
         /// <summary>
-        /// 
+        /// Détermine si les 2 courses sont differentes
         /// </summary>
-        /// <param name="course1"></param>
-        /// <param name="course2"></param>
-        /// <returns></returns>
+        /// <param name="course1">La course cote gauche du !=</param>
+        /// <param name="course2">La course cote droit du !=</param>
+        /// <returns>true les 2 deux courses n'on pas les mêmes valeurs sinon false</returns>
         public static bool operator !=(Course course1, Course course2)
         {
             return !(course1 == course2);
@@ -447,7 +449,6 @@ namespace _420_14B_FX_A24_TP2.classes
             if (reseltatComparaison != 0)
                 return reseltatComparaison * -1;
 
-            //Tri basé sur le nom
             return String.Compare(Nom, other.Nom,
                 CultureInfo.InvariantCulture,
                 CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase);

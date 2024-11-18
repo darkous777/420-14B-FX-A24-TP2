@@ -266,7 +266,7 @@ namespace _420_14B_FX_A24_TP2.classes
 
 
         /// <summary>
-        /// Détermine si les 2 courses sont equivalentes(en valeur)
+        /// Détermine si les 2 coureurs sont equivalentes(en valeur)
         /// </summary>
         /// <param name="coureur1">Le coureur cote gauche du egal</param>
         /// <param name="coureur2">Le coureur cote droit du egal</param>

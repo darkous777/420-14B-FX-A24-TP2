@@ -159,7 +159,7 @@ namespace _420_14B_FX_A24_TP2.classes
                 throw new ArgumentNullException(nameof(cheminFichierCourses), "Le chemin du fichier Course ne peut être nul ou vide, ni contenir uniquement des espaces.");
             }
 
-            #region
+            #region 1er essaie
             //if (cheminFichierCoureurs is null)
             //{
             //    throw new ArgumentNullException(nameof(cheminFichierCoureurs), "Le chemin du fichier Coureur ne peut être nul!");

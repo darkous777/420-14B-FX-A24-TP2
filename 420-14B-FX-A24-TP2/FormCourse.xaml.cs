@@ -62,6 +62,7 @@ namespace _420_14B_FX_A24_TP2
             prvTitle.Text = $"{Etat} une course";
             btnAjoutCourse.Content = Etat;
             dtpDateDepart.SelectedDate = DateTime.Now;
+
             tableCoureurs.IsEnabled = false;
 
             if (Etat != EtatFormulaire.Ajouter && Course is not null)
@@ -81,7 +82,7 @@ namespace _420_14B_FX_A24_TP2
 
                 if (Etat == EtatFormulaire.Supprimer)
                 {
-
+                    tableCoureurs.IsEnabled = false ;
 
                     txtNom.IsEnabled = false;
                     txtVille.IsEnabled = false;
@@ -127,7 +128,7 @@ namespace _420_14B_FX_A24_TP2
 
             byte distance;
             if (!byte.TryParse(txtDistance.Text, out distance) || distance < Course.DISTANCE_VAL_MIN)
-                message += $"La distance doit être plus grande que {Course.DISTANCE_VAL_MIN}.\n";
+                message += $"- La distance doit être plus grande que {Course.DISTANCE_VAL_MIN}.\n";
 
             if (message != "")
             {
@@ -256,6 +257,7 @@ namespace _420_14B_FX_A24_TP2
 
                     if (formCoureur.ShowDialog() is true)
                     {
+                        Course.TrierCoureurs();
 
                         AfficherListeCoureurs();
 
