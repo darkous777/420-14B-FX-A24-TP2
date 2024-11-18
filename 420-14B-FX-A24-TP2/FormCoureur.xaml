@@ -47,7 +47,7 @@
 
         <StackPanel Margin="5"  Orientation="Horizontal">
             <Label Width="80"></Label>
-            <CheckBox x:Name="checkAbandon">Abandon</CheckBox>
+            <CheckBox Checked="checkAbandon_Checked" Unchecked="checkAbandon_Checked" x:Name="checkAbandon">Abandon</CheckBox >
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

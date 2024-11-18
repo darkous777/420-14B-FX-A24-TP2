@@ -164,7 +164,19 @@ namespace _420_14B_FX_A24_TP2
             return messageErreur == "";
 
         }
-
+        private void checkAbandon_Checked(object sender, RoutedEventArgs e)
+        {
+            if (checkAbandon.IsChecked == true)
+            {
+                tsTemps.Text = TimeSpan.Zero.ToString(); 
+                tsTemps.IsEnabled = false; 
+            }
+            else
+            {
+                tsTemps.IsEnabled = true;
+                tsTemps.Text = Coureur.Temps.ToString();
+            }
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             foreach (string categorie in UtilEnum.GetAllDescriptions<Categorie>())
