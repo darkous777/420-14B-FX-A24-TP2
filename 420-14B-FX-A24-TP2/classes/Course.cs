@@ -371,6 +371,7 @@ namespace _420_14B_FX_A24_TP2.classes
                 if (c.Abandon || c.Temps == TimeSpan.Zero)
                 {
                     c.Temps = TimeSpan.Zero;
+                    c.Rang = 0;
                 }
             }
             Coureurs.Sort();
