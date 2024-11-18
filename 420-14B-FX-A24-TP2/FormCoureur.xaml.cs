@@ -52,13 +52,61 @@ namespace _420_14B_FX_A24_TP2
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            switch (Etat)
+            {
+
+                case EtatFormulaire.Ajouter:
+                    if (ValiderFormulaireCoureur())
+                    {
+                        Coureur = new Coureur(ushort.Parse(txtDossard.Text), txtNom.Text, txtPrenom.Text, (enums.Categorie)cboCategorie.SelectedIndex, txtVille.Text, (enums.Province)cboProvince.SelectedIndex, TimeSpan.Parse(tsTemps.Text));
+                        Coureur.Abandon = checkAbandon.IsChecked == true;
+                        DialogResult = true;
 
 
+                    }
+                    else
+                    {
+                        DialogResult = false;
+                    }
+                    break;
 
-            
+                case EtatFormulaire.Modifier:
+
+                    if (ValiderFormulaireCoureur())
+                    {
+                        Coureur.Dossard = ushort.Parse(txtDossard.Text);
+                        Coureur.Nom = txtNom.Text;
+                        Coureur.Prenom = txtPrenom.Text;
+                        Coureur.Ville = txtVille.Text;
+                        Coureur.Province = (enums.Province)cboProvince.SelectedIndex;
+                        Coureur.Categorie = (enums.Categorie)cboCategorie.SelectedIndex;
+                        Coureur.Temps = TimeSpan.Parse(tsTemps.Text);
+                        Coureur.Abandon = checkAbandon.IsChecked == true;
+                        DialogResult = true;
+                    }
+                    else
+                    {
+                        DialogResult = false;
+                    }
+                    break;
 
 
+                case EtatFormulaire.Supprimer:
+
+                    MessageBoxResult messageBoxResultCoureur = System.Windows.MessageBox.Show($"Êtes-vous sûre de vouloir supprimer le coureur?", "Suppression d'un coureur", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                    if (messageBoxResultCoureur == MessageBoxResult.Yes)
+                    {
+                        DialogResult = true;
+                    }
+                    else
+                    {
+                        DialogResult = null;
+                    }
+                    break;
+
+
+            }
         }
 
 
@@ -80,32 +128,32 @@ namespace _420_14B_FX_A24_TP2
             ushort numDossard;
             if (!ushort.TryParse(txtDossard.Text, out numDossard) || numDossard < Coureur.DOSSARD_VAL_MIN)
             {
-                messageErreur += $"Le numéro de dossard ne peut pas etre null et doit être plus grand que {Coureur.DOSSARD_VAL_MIN}. \n";
+                messageErreur += $"- Le numéro de dossard ne peut pas etre null et doit être plus grand que {Coureur.DOSSARD_VAL_MIN}. \n";
             }
 
             if (string.IsNullOrEmpty(txtNom.Text) || txtNom.Text.Trim().Length < Coureur.NOM_NB_CARC_MIN)
             {
-                messageErreur += $"Le champ nom ne peut pas etre vide et doit avoir un minimum de {Coureur.NOM_NB_CARC_MIN} caractères.\n";
+                messageErreur += $"- Le champ nom ne peut pas etre vide et doit avoir un minimum de {Coureur.NOM_NB_CARC_MIN} caractères.\n";
             }
 
             if (string.IsNullOrEmpty(txtPrenom.Text) || txtPrenom.Text.Trim().Length < Coureur.PRENOM_NB_CARC_MIN)
             {
-                messageErreur += $"Le champ prénom ne peut pas être vide et doit avoir un minimum de {Coureur.PRENOM_NB_CARC_MIN} caractères.\n";
+                messageErreur += $"- Le champ prénom ne peut pas être vide et doit avoir un minimum de {Coureur.PRENOM_NB_CARC_MIN} caractères.\n";
             }
 
             if (string.IsNullOrEmpty(txtVille.Text) || txtVille.Text.Trim().Length < Coureur.VILLE_NB_CARC_MIN)
             {
-                messageErreur += $"Le champ ville ne peut pas être vide et doit avoir un minimum de {Coureur.VILLE_NB_CARC_MIN} caractères.\n";
+                messageErreur += $"- Le champ ville ne peut pas être vide et doit avoir un minimum de {Coureur.VILLE_NB_CARC_MIN} caractères.\n";
             }
 
             if (cboProvince.SelectedIndex == -1)
             {
-                messageErreur += $"Le champ province doit être rempli. \n";
+                messageErreur += $"- Le champ province doit être rempli. \n";
             }
 
             if (cboCategorie.SelectedIndex == -1)
             {
-                messageErreur += $"Le champ catégorie doit être rempli. \n";
+                messageErreur += $"- Le champ catégorie doit être rempli. \n";
             }
 
             if (messageErreur != "")
