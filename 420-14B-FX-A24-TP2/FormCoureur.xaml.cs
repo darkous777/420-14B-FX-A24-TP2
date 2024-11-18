@@ -38,7 +38,14 @@ namespace _420_14B_FX_A24_TP2
         public EtatFormulaire Etat
         {
             get { return _etat; }
-            private set { _etat = value; }
+            set
+            {
+                if (!(Enum.IsDefined(typeof(EtatFormulaire), value)))
+                    throw new ArgumentOutOfRangeException(nameof(Etat), $"La valeur {value} n'est pas existante dans les choix.");
+
+                _etat = value;
+
+            }
         }
 
         public FormCoureur(EtatFormulaire etat = EtatFormulaire.Ajouter, Coureur coureur = null)
@@ -105,20 +112,13 @@ namespace _420_14B_FX_A24_TP2
                     }
                     break;
 
-
             }
         }
-
-
-
-
 
         private void btnAnnuler_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
         }
-
-
 
         private bool ValiderFormulaireCoureur()
         {
@@ -168,8 +168,8 @@ namespace _420_14B_FX_A24_TP2
         {
             if (checkAbandon.IsChecked == true)
             {
-                tsTemps.Text = TimeSpan.Zero.ToString(); 
-                tsTemps.IsEnabled = false; 
+                tsTemps.Text = TimeSpan.Zero.ToString();
+                tsTemps.IsEnabled = false;
             }
             else
             {
@@ -216,8 +216,6 @@ namespace _420_14B_FX_A24_TP2
 
                 }
             }
-
-
 
         }
     }
