@@ -240,7 +240,7 @@ namespace _420_14B_FX_A24_TP2
                     cboProvince.IsEnabled = false;
                     cboCategorie.IsEnabled = false;
                     tsTemps.IsEnabled = false;
-                    checkAbandon.IsChecked = false;
+                    checkAbandon.IsEnabled = false;
 
                 }
             }
